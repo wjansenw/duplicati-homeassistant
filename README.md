@@ -1,11 +1,11 @@
 duplicati-nodered-homeassistant
 ===============================
-
+### Configuration
 Expose duplicati to homeassistant via nodered/mqtt.
 You need to have a working mqtt broker, homeassistant configured correctly to work with this broker and accept discovery of new devices.
 
-Configuration can be done by a yaml file. In the current flow, this file is to be stored on 
- cat duplicati_config.yaml
+Configuration should be done by a yaml file. In the current flow, this file is to be stored on /data/duplicati/duplicati_config.yaml
+
 ```
 nodered:$ pwd
 /data/duplicati
@@ -22,7 +22,12 @@ mqtt:
   username: mosquitto
   password: mosquitto
 ```
-### About
 
-This is your project's README.md file. It helps users understand what your
-project does, how to use it and anything else they may need to know.
+### Backup Device in Home Assistant
+If configured correctly, your backup from Duplicati will appear as a new device in Home Asssitant. You can start a backup by toggling the switch. 
+![](HA_duplicati_screenshot.PNG)
+
+### Remarks 
+* When a backup is ongoing, updates will be send over to mqtt every 20 seconds.
+* Stopping an ongoing backup is not currently supported.
+* If you toggle the Backup Active-switch, it will put the backup in the queue. If the queue is empty, it will start immediately; otherwise it will be queued.
