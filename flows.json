@@ -1024,7 +1024,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
+        "x": 850,
         "y": 580,
         "wires": [
             [
@@ -1226,8 +1226,8 @@
         "type": "function",
         "z": "3c271f19ec74d126",
         "g": "8034c670f0f90e96",
-        "name": "discovery BackupOngoing",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\n\nvar payload = {\n        name: \"Backup Ongoing\",\n        unique_id: \"duplicati_\"+machine+\"_backupongoing_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        command_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\",\n        value_template: \"{{ value_json.BackupOngoing }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n        payload_on: \"ON\",\n        payload_off: \"OFF\"\n    };\nvar topic = \"homeassistant/switch/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_backupongoing/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
+        "name": "discovery BackupActive",
+        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\n\nvar payload = {\n        name: \"Backup Active\",\n        unique_id: \"duplicati_\"+machine+\"_backupactive_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        command_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\",\n        value_template: \"{{ value_json.BackupActive }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n        payload_on: \"ON\",\n        payload_off: \"OFF\"\n    };\nvar topic = \"homeassistant/switch/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_backupactive/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1247,7 +1247,7 @@
         "type": "function",
         "z": "3c271f19ec74d126",
         "g": "8034c670f0f90e96",
-        "name": "discovery BackupOngoing",
+        "name": "discovery BackupActive",
         "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\");\n\nmsg.payload.topic =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\";\nmsg.payload.topic_state =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\";\nmsg.topic =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\";\nmsg.action = \"subscribe\"\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
@@ -1869,7 +1869,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload.BackupOngoing",
+                "p": "payload.BackupActive",
                 "pt": "msg",
                 "to": "ON",
                 "tot": "str"
@@ -1898,7 +1898,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload.BackupOngoing",
+                "p": "payload.BackupActive",
                 "pt": "msg",
                 "to": "OFF",
                 "tot": "str"
@@ -3187,7 +3187,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
+        "x": 840,
         "y": 980,
         "wires": [
             [
