@@ -93,7 +93,6 @@
             "04a78ca5780612cc",
             "855210f131cf2c14",
             "80c08df885371ddd",
-            "6647cc54b601b565",
             "6fb62f59543b1bd8",
             "e6aecce0ec036c34",
             "6b3175875abc97c8",
@@ -106,7 +105,8 @@
             "80bb9f56f89f87c9",
             "cc39b98c31d12b32",
             "6718913a407edb6c",
-            "17abc136282147a7"
+            "17abc136282147a7",
+            "e21f9f0e11dfc8a5"
         ],
         "x": 1874,
         "y": 719,
@@ -177,8 +177,8 @@
         ],
         "x": 14,
         "y": 39,
-        "w": 1792,
-        "h": 1088
+        "w": 1852,
+        "h": 448
     },
     {
         "id": "097ea7fa4f15e4fc",
@@ -258,29 +258,13 @@
             "color": "#a4a4a4"
         },
         "nodes": [
-            "9e291f75e028d6bb",
-            "426ffe46eca0d4a0",
-            "a373573e455b3a7e",
-            "e1350715ba1d248b",
-            "f6a1233dd8bde980",
-            "07e496a5bd047974",
-            "23caf6a5b091e679",
-            "1b2cb6277843d76d",
-            "6e241ded059a539d",
-            "846865de5459d839",
-            "a9111d9b4b4a982a",
-            "b81d5bbf51ecda5e",
             "eabe3496630c0fae",
-            "2af9291c912ca077",
-            "d1266bc220d62f99",
-            "2868cd21b706604c",
-            "d24edafd388bdacf",
-            "438f09c0a3576877"
+            "2af9291c912ca077"
         ],
-        "x": 704,
+        "x": 714,
         "y": 339,
-        "w": 322,
-        "h": 762
+        "w": 192,
+        "h": 122
     },
     {
         "id": "fa21f05ffa89a9b3",
@@ -736,7 +720,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1220,
-        "y": 260,
+        "y": 240,
         "wires": []
     },
     {
@@ -821,7 +805,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1270,
-        "y": 320,
+        "y": 340,
         "wires": []
     },
     {
@@ -912,23 +896,7 @@
         "wires": [
             [
                 "2af9291c912ca077",
-                "9e291f75e028d6bb",
-                "426ffe46eca0d4a0",
-                "f6a1233dd8bde980",
-                "07e496a5bd047974",
-                "a373573e455b3a7e",
-                "e1350715ba1d248b",
-                "23caf6a5b091e679",
-                "1b2cb6277843d76d",
-                "6e241ded059a539d",
-                "846865de5459d839",
-                "a9111d9b4b4a982a",
-                "b81d5bbf51ecda5e",
-                "eabe3496630c0fae",
-                "d1266bc220d62f99",
-                "2868cd21b706604c",
-                "d24edafd388bdacf",
-                "438f09c0a3576877"
+                "eabe3496630c0fae"
             ]
         ]
     },
@@ -946,8 +914,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1540,
-        "y": 740,
+        "x": 1600,
+        "y": 440,
         "wires": []
     },
     {
@@ -965,277 +933,25 @@
         "correl": "",
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
-        "x": 1190,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "9e291f75e028d6bb",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery backupname",
-        "func": "var machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Backup Name\",\n        unique_id: \"duplicati_\"+machine+\"_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Name }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_backupname/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 840,
+        "x": 1050,
         "y": 420,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "426ffe46eca0d4a0",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery lastbackupdate",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Last Backup Date\",\n        unique_id: \"duplicati_\"+machine+\"_lastbackupdate_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.LastBackupDate }}\",\n        device_class: \"timestamp\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_lastbackupdate/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 460,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "a373573e455b3a7e",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery SourceFilesSize",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Source Files Size\",\n        unique_id: \"duplicati_\"+machine+\"_sourcefilessize_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.SourceFilesSize }}\",\n        device_class: \"data_size\",\n        unit_of_measurement: \"B\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_sourcefilessize/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 580,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "e1350715ba1d248b",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery SourceFilesCount",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Source Files Count\",\n        unique_id: \"duplicati_\"+machine+\"_sourcefilescount_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.SourceFilesCount }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_sourcefilescount/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 620,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "f6a1233dd8bde980",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery lastbackupstarted",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Last Backup Started\",\n        unique_id: \"duplicati_\"+machine+\"_lastbackupstarted_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.LastBackupStarted }}\",\n        device_class: \"timestamp\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_lastbackupstarted/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 500,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "07e496a5bd047974",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery lastbackupfinished",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Last Backup Finished\",\n        unique_id: \"duplicati_\"+machine+\"_lastbackupfinished_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.LastBackupFinished }}\",\n        device_class: \"timestamp\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_lastbackupfinished/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 540,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "23caf6a5b091e679",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery TargetFilesSize",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Target Files Size\",\n        unique_id: \"duplicati_\"+machine+\"_targetfilessize_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.TargetFilesSize }}\",\n        device_class: \"data_size\",\n        unit_of_measurement: \"B\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_targetfilessize/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 660,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "1b2cb6277843d76d",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery TargetFilesCount",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Target Files Count\",\n        unique_id: \"duplicati_\"+machine+\"_targetfilescount_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.TargetFilesCount }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_targetfilescount/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 700,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "6e241ded059a539d",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery LastErrorDate",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g, \"_\")\n\nvar payload = {\n    name: \"Last Error Date\",\n    unique_id: \"duplicati_\" + machine + \"_lasterrordate_\" + msg.payload.Backup.ID,\n    state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n    value_template: \"{{ value_json.Backup.Metadata.LastErrorDate }}\",\n    device_class: \"timestamp\",\n    device: {\n        identifiers: [\n            machine + msg.payload.Backup.ID\n        ],\n        name: machine + \" \" + BackupName,\n        manufacturer: \"Duplicati\"\n    },\n};\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean + \"_lasterrordate/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 740,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "846865de5459d839",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery LastErrorMessage",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Last Error Message\",\n        unique_id: \"duplicati_\"+machine+\"_lasterrormessage_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.Backup.Metadata.LastErrorMessage }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_lasterrormessage/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 780,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "a9111d9b4b4a982a",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery BackendAction",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Backend Action\",\n        unique_id: \"duplicati_\"+machine+\"_backendaction_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.current.BackendAction }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_backendaction/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 820,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "b81d5bbf51ecda5e",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery Phase",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Phase\",\n        unique_id: \"duplicati_\"+machine+\"_phase_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.current.Phase }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_phase/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 820,
-        "y": 860,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
+        "wires": []
     },
     {
         "id": "eabe3496630c0fae",
         "type": "function",
         "z": "3c271f19ec74d126",
         "g": "8034c670f0f90e96",
-        "name": "discovery BackupActive",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\n\nvar payload = {\n        name: \"Backup Active\",\n        unique_id: \"duplicati_\"+machine+\"_backupactive_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        command_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\",\n        value_template: \"{{ value_json.BackupActive }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n        payload_on: \"ON\",\n        payload_off: \"OFF\"\n    };\nvar topic = \"homeassistant/switch/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_backupactive/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
+        "name": "discovery HA",
+        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\n\nvar payload = {\n        name: \"duplicati_\"+machine+\"_\"+BackupName_clean,\n        unique_id: \"duplicati_\"+machine+\"_\"+BackupName_clean,\n        state_topic: \"duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        command_topic: \"duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\",\n        json_attributes_topic: \"duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.BackupActive }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: \"duplicati_\" + machine + \"_\" + BackupName_clean,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/switch/duplicati/\" + machine + \"_\" + BackupName_clean  + \"/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
-        "y": 900,
+        "x": 810,
+        "y": 420,
         "wires": [
             [
                 "115a4c6d8f787037"
@@ -1247,15 +963,15 @@
         "type": "function",
         "z": "3c271f19ec74d126",
         "g": "8034c670f0f90e96",
-        "name": "discovery BackupActive",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\");\n\nmsg.payload.topic =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\";\nmsg.payload.topic_state =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\";\nmsg.topic =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\";\nmsg.action = \"subscribe\"\nreturn msg;\n",
+        "name": "monitor topic",
+        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\");\n\nmsg.payload.topic =  \"duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\";\n//msg.payload.topic_state =  \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\";\nmsg.topic =  \"duplicati/\" + machine + \"_\" + BackupName_clean + \"/set\";\nmsg.action = \"subscribe\"\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
+        "x": 810,
         "y": 380,
         "wires": [
             [
@@ -1285,8 +1001,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1350,
-        "y": 680,
+        "x": 1410,
+        "y": 380,
         "wires": [
             [
                 "9dd50a15d5fc1cc9",
@@ -1884,8 +1600,8 @@
         "y": 1160,
         "wires": [
             [
-                "6647cc54b601b565",
-                "80c08df885371ddd"
+                "80c08df885371ddd",
+                "e21f9f0e11dfc8a5"
             ]
         ]
     },
@@ -1913,8 +1629,8 @@
         "y": 1220,
         "wires": [
             [
-                "6647cc54b601b565",
-                "80c08df885371ddd"
+                "80c08df885371ddd",
+                "e21f9f0e11dfc8a5"
             ]
         ]
     },
@@ -1926,7 +1642,7 @@
         "name": "",
         "topic": "",
         "qos": "0",
-        "retain": "false",
+        "retain": "true",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -1982,27 +1698,6 @@
         "x": 4510,
         "y": 1160,
         "wires": []
-    },
-    {
-        "id": "6647cc54b601b565",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "f9550fa8be23ab21",
-        "name": "update",
-        "func": "const f = flow.get(\"flow_functions\");\n\nvar machine = msg.config.systeminfo.MachineName;\n\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\");\n\nmsg.topic = \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\"\nmsg.payload.Backup.Metadata.LastBackupDate = f.clean_date(msg.payload.Backup.Metadata.LastBackupDate);\nmsg.payload.Backup.Metadata.LastBackupStarted = f.clean_date(msg.payload.Backup.Metadata.LastBackupStarted);\nmsg.payload.Backup.Metadata.LastBackupFinished = f.clean_date(msg.payload.Backup.Metadata.LastBackupFinished);\nmsg.payload.Backup.Metadata.LastCompactStarted = f.clean_date(msg.payload.Backup.Metadata.LastCompactStarted);\nmsg.payload.Backup.Metadata.LastCompactFinished = f.clean_date(msg.payload.Backup.Metadata.LastCompactFinished);\nmsg.payload.Backup.Metadata.LastVacuumStarted = f.clean_date(msg.payload.Backup.Metadata.LastVacuumStarted);\nmsg.payload.Backup.Metadata.LastVacuumFinished = f.clean_date(msg.payload.Backup.Metadata.LastVacuumFinished);\nmsg.payload.Backup.Metadata.LastErrorDate = f.clean_date(msg.payload.Backup.Metadata.LastErrorDate);\n\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 4480,
-        "y": 1220,
-        "wires": [
-            [
-                "04a78ca5780612cc"
-            ]
-        ]
     },
     {
         "id": "a54195efd786506f",
@@ -2115,7 +1810,7 @@
         "z": "3c271f19ec74d126",
         "g": "b1e48b9e9dfab9e4",
         "name": "server state",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2374,27 +2069,6 @@
         ]
     },
     {
-        "id": "d1266bc220d62f99",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery Total File Count",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Total File Count\",\n        unique_id: \"duplicati_\"+machine+\"_totalfilecount_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.current.TotalFileCount }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_totalfilecount/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 940,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
         "id": "e6aecce0ec036c34",
         "type": "switch",
         "z": "3c271f19ec74d126",
@@ -2525,8 +2199,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1620,
-        "y": 680,
+        "x": 1680,
+        "y": 380,
         "wires": [
             [
                 "a9bdc792493e8941",
@@ -3175,69 +2849,6 @@
         "wires": []
     },
     {
-        "id": "2868cd21b706604c",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery Total FileSize",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Total File Size\",\n        unique_id: \"duplicati_\"+machine+\"_totalfilesize_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.current.TotalFileSize }}\",\n        device_class: \"data_size\",\n        unit_of_measurement: \"B\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_totalfilesize/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 840,
-        "y": 980,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "d24edafd388bdacf",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery ProcessedFileSize",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Processed File Size\",\n        unique_id: \"duplicati_\"+machine+\"_processedfilesize_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.current.ProcessedFileSize }}\",\n        device_class: \"data_size\",\n        unit_of_measurement: \"B\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_processedfilesize/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 1020,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
-        "id": "438f09c0a3576877",
-        "type": "function",
-        "z": "3c271f19ec74d126",
-        "g": "8034c670f0f90e96",
-        "name": "discovery ProcessedFileCount",
-        "func": "\nvar machine = msg.config.systeminfo.MachineName;\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\")\n\nvar payload = {\n        name: \"Processed File Count\",\n        unique_id: \"duplicati_\"+machine+\"_processedfilecount_\"+msg.payload.Backup.ID,\n        state_topic: \"homeassistant/duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\n        value_template: \"{{ value_json.current.ProcessedFileCount }}\",\n        device: {\n            identifiers: [\n                machine+msg.payload.Backup.ID\n            ],\n            name: machine+\" \"+BackupName,\n            manufacturer: \"Duplicati\"\n        },\n    };\nvar topic = \"homeassistant/sensor/duplicati/\" + machine + \"_\" + BackupName_clean  + \"_processedfilecount/config\";\n\nmsg.payload = payload;\nmsg.topic = topic;\nmsg.retain = true;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 1060,
-        "wires": [
-            [
-                "115a4c6d8f787037"
-            ]
-        ]
-    },
-    {
         "id": "4da35f4053568dd4",
         "type": "debug",
         "z": "3c271f19ec74d126",
@@ -3251,7 +2862,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3650,
+        "x": 3640,
         "y": 760,
         "wires": []
     },
@@ -3278,8 +2889,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1180,
-        "y": 680,
+        "x": 1220,
+        "y": 380,
         "wires": [
             [
                 "22a63bac60863174"
@@ -3666,127 +3277,25 @@
         ]
     },
     {
-        "id": "7bcd43d698d6e673",
-        "type": "http in",
+        "id": "e21f9f0e11dfc8a5",
+        "type": "function",
         "z": "3c271f19ec74d126",
-        "name": "duplicati",
-        "url": "/duplicati",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 3190,
-        "y": 140,
+        "g": "f9550fa8be23ab21",
+        "name": "update",
+        "func": "const f = flow.get(\"flow_functions\");\n\nvar machine = msg.config.systeminfo.MachineName;\n\nvar BackupName = msg.payload.Backup.Name;\nvar BackupName_clean = BackupName.toLowerCase().replace(/ /g,\"_\");\n\nmsg.topic = \"duplicati/\" + machine + \"_\" + BackupName_clean + \"/state\",\nmsg.retain = false;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 4480,
+        "y": 1220,
         "wires": [
             [
-                "1a09d868b435b006",
-                "2d36dd8081c58f86"
+                "04a78ca5780612cc"
             ]
         ]
-    },
-    {
-        "id": "1a09d868b435b006",
-        "type": "json",
-        "z": "3c271f19ec74d126",
-        "name": "duplicati response",
-        "property": "payload",
-        "action": "obj",
-        "pretty": true,
-        "x": 3390,
-        "y": 200,
-        "wires": [
-            [
-                "e45f5131a68da7e0",
-                "534d0b0e40635e78",
-                "f65a371520610717"
-            ]
-        ]
-    },
-    {
-        "id": "534d0b0e40635e78",
-        "type": "http response",
-        "z": "3c271f19ec74d126",
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 3580,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "e45f5131a68da7e0",
-        "type": "switch",
-        "z": "3c271f19ec74d126",
-        "d": true,
-        "name": "",
-        "property": "payload.Data.MainOperation",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "Backup",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Repair",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Compact",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Restore",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 4,
-        "x": 3570,
-        "y": 200,
-        "wires": [
-            [],
-            [],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "2d36dd8081c58f86",
-        "type": "file",
-        "z": "3c271f19ec74d126",
-        "name": "write to file",
-        "filename": "/data/duplicati/received_messages",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 3390,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f65a371520610717",
-        "type": "debug",
-        "z": "3c271f19ec74d126",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 3530,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "317fa54a.feaf92",
