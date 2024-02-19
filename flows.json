@@ -15,6 +15,14 @@
         "info": ""
     },
     {
+        "id": "172d02ccd8ae9735",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "b1e48b9e9dfab9e4",
         "type": "group",
         "z": "3c271f19ec74d126",
@@ -33,7 +41,7 @@
             "a9bdc792493e8941",
             "ac8b25be99920ae8"
         ],
-        "x": 1874,
+        "x": 2524,
         "y": 79,
         "w": 1092,
         "h": 182
@@ -62,8 +70,8 @@
             "21b3338a5e0f6ec3",
             "a68bc3f58fc127ce"
         ],
-        "x": 1874,
-        "y": 479,
+        "x": 2514,
+        "y": 439,
         "w": 1962,
         "h": 162
     },
@@ -108,7 +116,7 @@
             "17abc136282147a7",
             "e21f9f0e11dfc8a5"
         ],
-        "x": 1874,
+        "x": 2514,
         "y": 719,
         "w": 2892,
         "h": 542
@@ -173,12 +181,22 @@
             "8034c670f0f90e96",
             "4b82e6663b5653ca",
             "90c43550e320f553",
-            "cf1a649691e696cc"
+            "cf1a649691e696cc",
+            "9161a8eefe170aa8",
+            "2541938168f8f20f",
+            "37498c3b05e26bdc",
+            "b732ea8fca8317d9",
+            "eddf2bb02d8eeb30",
+            "b094e874d1a3f262",
+            "fb13e8f2efaae0cc",
+            "c06d1468db282169",
+            "0cf28ba083fd0b3c",
+            "0c30b841fc01a48a"
         ],
         "x": 14,
         "y": 39,
-        "w": 1852,
-        "h": 448
+        "w": 2332,
+        "h": 608
     },
     {
         "id": "097ea7fa4f15e4fc",
@@ -262,7 +280,7 @@
             "2af9291c912ca077"
         ],
         "x": 714,
-        "y": 339,
+        "y": 499,
         "w": 192,
         "h": 122
     },
@@ -355,7 +373,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 140,
+        "y": 120,
         "wires": [
             [
                 "cc3598841c1cf86c"
@@ -373,7 +391,7 @@
                 "t": "set",
                 "p": "payload.url1",
                 "pt": "msg",
-                "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/ngax/index.html\"",
+                "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port",
                 "tot": "jsonata"
             },
             {
@@ -417,6 +435,13 @@
                 "pt": "msg",
                 "to": "false",
                 "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.url7",
+                "pt": "msg",
+                "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/login.cgi\"",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -542,7 +567,7 @@
         "type": "http request",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "get xsrf token",
+        "name": "login attempt",
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
@@ -559,7 +584,7 @@
         "wires": [
             [
                 "f2fdee69670534ac",
-                "6f21c052f12d9d28"
+                "c06d1468db282169"
             ]
         ]
     },
@@ -591,7 +616,7 @@
         "to": "",
         "reg": false,
         "x": 440,
-        "y": 260,
+        "y": 420,
         "wires": [
             [
                 "7fe5ff57573b3e04"
@@ -623,7 +648,7 @@
             }
         ],
         "x": 620,
-        "y": 260,
+        "y": 420,
         "wires": [
             [
                 "f3dc05208f712b47"
@@ -635,7 +660,7 @@
         "type": "debug",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "after xsrf",
+        "name": "after login attempt",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -662,7 +687,7 @@
         "finalize": "",
         "libs": [],
         "x": 810,
-        "y": 260,
+        "y": 420,
         "wires": [
             [
                 "f4e533b436a6cab3"
@@ -697,7 +722,7 @@
         "to": "",
         "reg": false,
         "x": 1000,
-        "y": 260,
+        "y": 420,
         "wires": [
             [
                 "c8c8b4ffacdd3d36",
@@ -719,8 +744,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1220,
-        "y": 240,
+        "x": 1200,
+        "y": 420,
         "wires": []
     },
     {
@@ -748,7 +773,7 @@
             }
         ],
         "x": 650,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "4b11084b4b9d97c9"
@@ -783,7 +808,7 @@
         "to": "",
         "reg": false,
         "x": 440,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "e56a372fe2c392a9"
@@ -805,7 +830,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1270,
-        "y": 340,
+        "y": 500,
         "wires": []
     },
     {
@@ -822,7 +847,7 @@
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "15844bccc348b17e"
@@ -871,7 +896,7 @@
         "to": "",
         "reg": false,
         "x": 1020,
-        "y": 320,
+        "y": 480,
         "wires": [
             [
                 "e4dd12bd221a0d20",
@@ -892,7 +917,7 @@
         "stream": false,
         "addname": "",
         "x": 400,
-        "y": 380,
+        "y": 540,
         "wires": [
             [
                 "2af9291c912ca077",
@@ -915,7 +940,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1600,
-        "y": 440,
+        "y": 560,
         "wires": []
     },
     {
@@ -934,7 +959,7 @@
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
         "x": 1050,
-        "y": 420,
+        "y": 580,
         "wires": []
     },
     {
@@ -951,7 +976,7 @@
         "finalize": "",
         "libs": [],
         "x": 810,
-        "y": 420,
+        "y": 580,
         "wires": [
             [
                 "115a4c6d8f787037"
@@ -972,7 +997,7 @@
         "finalize": "",
         "libs": [],
         "x": 810,
-        "y": 380,
+        "y": 540,
         "wires": [
             [
                 "0c53df1e36e1311e",
@@ -1002,7 +1027,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 1410,
-        "y": 380,
+        "y": 540,
         "wires": [
             [
                 "9dd50a15d5fc1cc9",
@@ -1024,8 +1049,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 1,
-        "x": 1950,
-        "y": 560,
+        "x": 2590,
+        "y": 520,
         "wires": [
             [
                 "a54195efd786506f"
@@ -1052,8 +1077,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2300,
-        "y": 560,
+        "x": 2940,
+        "y": 520,
         "wires": [
             [
                 "059d211e241a21f2"
@@ -1072,8 +1097,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 2470,
-        "y": 560,
+        "x": 3110,
+        "y": 520,
         "wires": [
             [
                 "8313eccc1f64953e"
@@ -1114,8 +1139,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2640,
-        "y": 560,
+        "x": 3280,
+        "y": 520,
         "wires": [
             [
                 "ad642999b9d2b4d5"
@@ -1134,8 +1159,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 2810,
-        "y": 560,
+        "x": 3450,
+        "y": 520,
         "wires": [
             [
                 "b084c693379ba757"
@@ -1160,8 +1185,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 2950,
-        "y": 560,
+        "x": 3590,
+        "y": 520,
         "wires": [
             [
                 "6defae5837b5efe8"
@@ -1182,8 +1207,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3550,
-        "y": 560,
+        "x": 4190,
+        "y": 520,
         "wires": []
     },
     {
@@ -1213,8 +1238,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3120,
-        "y": 560,
+        "x": 3760,
+        "y": 520,
         "wires": [
             [
                 "53913a3185841db0"
@@ -1245,8 +1270,8 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 3330,
-        "y": 560,
+        "x": 3970,
+        "y": 520,
         "wires": [
             [
                 "4e02d338d79c4c58",
@@ -1278,7 +1303,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 3590,
+        "x": 4230,
         "y": 1100,
         "wires": [
             [
@@ -1299,7 +1324,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3790,
+        "x": 4430,
         "y": 1100,
         "wires": [
             [
@@ -1319,7 +1344,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 3930,
+        "x": 4570,
         "y": 1100,
         "wires": [
             [
@@ -1361,7 +1386,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2140,
+        "x": 2780,
         "y": 1120,
         "wires": [
             [
@@ -1393,7 +1418,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 2780,
+        "x": 3420,
         "y": 800,
         "wires": [
             [
@@ -1414,7 +1439,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3440,
+        "x": 4080,
         "y": 800,
         "wires": [
             [
@@ -1472,7 +1497,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3660,
+        "x": 4300,
         "y": 940,
         "wires": [
             [
@@ -1503,7 +1528,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 3410,
+        "x": 4050,
         "y": 1160,
         "wires": [
             [
@@ -1534,7 +1559,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3630,
+        "x": 4270,
         "y": 1160,
         "wires": [
             [
@@ -1565,7 +1590,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 3850,
+        "x": 4490,
         "y": 1160,
         "wires": [
             [
@@ -1596,7 +1621,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 4180,
+        "x": 4820,
         "y": 1160,
         "wires": [
             [
@@ -1625,7 +1650,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 4180,
+        "x": 4820,
         "y": 1220,
         "wires": [
             [
@@ -1649,7 +1674,7 @@
         "correl": "",
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
-        "x": 4690,
+        "x": 5330,
         "y": 1220,
         "wires": []
     },
@@ -1673,7 +1698,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3410,
+        "x": 4050,
         "y": 1100,
         "wires": [
             [
@@ -1695,7 +1720,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4510,
+        "x": 5150,
         "y": 1160,
         "wires": []
     },
@@ -1720,8 +1745,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 2130,
-        "y": 560,
+        "x": 2770,
+        "y": 520,
         "wires": [
             [
                 "023f7c3cccf249af"
@@ -1796,7 +1821,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 2190,
+        "x": 2840,
         "y": 160,
         "wires": [
             [
@@ -1818,7 +1843,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2610,
+        "x": 3260,
         "y": 120,
         "wires": []
     },
@@ -1835,7 +1860,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2380,
+        "x": 3030,
         "y": 160,
         "wires": [
             [
@@ -1893,7 +1918,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2620,
+        "x": 3270,
         "y": 160,
         "wires": [
             [
@@ -1925,7 +1950,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 2860,
+        "x": 3510,
         "y": 160,
         "wires": [
             [
@@ -1974,7 +1999,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1980,
+        "x": 2630,
         "y": 160,
         "wires": [
             [
@@ -2036,7 +2061,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2620,
+        "x": 3270,
         "y": 220,
         "wires": [
             []
@@ -2060,7 +2085,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3820,
+        "x": 4460,
         "y": 800,
         "wires": [
             [
@@ -2089,7 +2114,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 2530,
+        "x": 3170,
         "y": 1100,
         "wires": [
             [
@@ -2118,7 +2143,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2910,
+        "x": 3550,
         "y": 1120,
         "wires": [
             [
@@ -2171,7 +2196,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1960,
+        "x": 2600,
         "y": 1120,
         "wires": [
             [
@@ -2693,7 +2718,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3140,
+        "x": 3780,
         "y": 1140,
         "wires": []
     },
@@ -2768,7 +2793,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 2350,
+        "x": 2990,
         "y": 1120,
         "wires": [
             [
@@ -2793,7 +2818,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2550,
+        "x": 3190,
         "y": 1140,
         "wires": []
     },
@@ -2862,7 +2887,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3640,
+        "x": 4280,
         "y": 760,
         "wires": []
     },
@@ -2890,7 +2915,7 @@
         "to": "",
         "reg": false,
         "x": 1220,
-        "y": 380,
+        "y": 540,
         "wires": [
             [
                 "22a63bac60863174"
@@ -2958,7 +2983,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3020,
+        "x": 3660,
         "y": 1060,
         "wires": [
             [
@@ -2990,7 +3015,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 3220,
+        "x": 3860,
         "y": 940,
         "wires": [
             [
@@ -3012,7 +3037,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3440,
+        "x": 4080,
         "y": 940,
         "wires": [
             [
@@ -3039,7 +3064,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 2710,
+        "x": 3350,
         "y": 1100,
         "wires": [
             [
@@ -3070,8 +3095,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3620,
-        "y": 520,
+        "x": 4260,
+        "y": 480,
         "wires": [
             []
         ]
@@ -3162,7 +3187,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 1,
-        "x": 1270,
+        "x": 1250,
         "y": 80,
         "wires": [
             []
@@ -3228,8 +3253,8 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2310,
-        "y": 600,
+        "x": 2950,
+        "y": 560,
         "wires": []
     },
     {
@@ -3268,7 +3293,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3610,
+        "x": 4250,
         "y": 1200,
         "wires": [
             [
@@ -3289,11 +3314,297 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 4480,
+        "x": 5120,
         "y": 1220,
         "wires": [
             [
                 "04a78ca5780612cc"
+            ]
+        ]
+    },
+    {
+        "id": "9161a8eefe170aa8",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "config.url7",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "get-nonce=1",
+                "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 240,
+        "wires": [
+            [
+                "2541938168f8f20f"
+            ]
+        ]
+    },
+    {
+        "id": "2541938168f8f20f",
+        "type": "http request",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "get salt and nonce",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/x-www-form-urlencoded"
+            }
+        ],
+        "x": 1370,
+        "y": 240,
+        "wires": [
+            [
+                "b732ea8fca8317d9"
+            ]
+        ]
+    },
+    {
+        "id": "37498c3b05e26bdc",
+        "type": "debug",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "salt & nonce",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1630,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b732ea8fca8317d9",
+        "type": "function",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "trim JSON",
+        "func": "var data = msg.payload;\ndata = data.trim();\nmsg.payload = JSON.parse(data);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 320,
+        "wires": [
+            [
+                "0c30b841fc01a48a"
+            ]
+        ]
+    },
+    {
+        "id": "eddf2bb02d8eeb30",
+        "type": "function",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "salt pwd",
+        "func": "var CryptoJS = context.global.cryptojs;\n\nvar saltedpwd = CryptoJS.SHA256(\n    CryptoJS.enc.Hex.parse(\n        CryptoJS.enc.Utf8.parse(msg.config.password) + CryptoJS.enc.Base64.parse(msg.config.login.Salt)\n    )\n)\n\nvar noncedpwd = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(CryptoJS.enc.Base64.parse(msg.config.login.Nonce) + saltedpwd)).toString(CryptoJS.enc.Base64);\n\n//var auth_response_hash = CryptoJS.SHA256(secret + msg.challenge);\n//var auth_response = CryptoJS.enc.Base64.stringify(auth_response_hash);\n\n//msg.payload = auth_response;\nmsg.payload = \"password=\"+noncedpwd;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1600,
+        "y": 320,
+        "wires": [
+            [
+                "b094e874d1a3f262"
+            ]
+        ]
+    },
+    {
+        "id": "b094e874d1a3f262",
+        "type": "http request",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "login",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/x-www-form-urlencoded"
+            }
+        ],
+        "x": 1770,
+        "y": 320,
+        "wires": [
+            [
+                "0cf28ba083fd0b3c"
+            ]
+        ]
+    },
+    {
+        "id": "fb13e8f2efaae0cc",
+        "type": "debug",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "after login with ui-pwd",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2190,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c06d1468db282169",
+        "type": "switch",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "property": "responseUrl",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "login.html",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 990,
+        "y": 300,
+        "wires": [
+            [
+                "9161a8eefe170aa8"
+            ],
+            [
+                "6f21c052f12d9d28"
+            ]
+        ]
+    },
+    {
+        "id": "0cf28ba083fd0b3c",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cookies.session-auth",
+                "pt": "msg",
+                "to": "responseCookies.session-auth",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "config.url1",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 320,
+        "wires": [
+            [
+                "fb13e8f2efaae0cc",
+                "023783676931fe66"
+            ]
+        ]
+    },
+    {
+        "id": "0c30b841fc01a48a",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.login",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1380,
+        "y": 320,
+        "wires": [
+            [
+                "37498c3b05e26bdc",
+                "eddf2bb02d8eeb30"
             ]
         ]
     },
@@ -3762,5 +4073,143 @@
         "x": 1470,
         "y": 420,
         "wires": []
+    },
+    {
+        "id": "755f0b8.5893ff4",
+        "type": "inject",
+        "z": "172d02ccd8ae9735",
+        "name": "Manual Entry",
+        "props": [
+            {
+                "p": "password",
+                "v": "password",
+                "vt": "str"
+            },
+            {
+                "p": "salt",
+                "v": "aszng9OoS6ybw9yTW2WR4GySMNdM3srSQ4KE70aungY=",
+                "vt": "str"
+            },
+            {
+                "p": "challenge",
+                "v": "KSO+hOFs1q5SkEnx8bvp67Om2zyHDD6ZJF4NHAa3R94=",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 530,
+        "y": 400,
+        "wires": [
+            [
+                "786daa7f.3fe284"
+            ]
+        ]
+    },
+    {
+        "id": "36ed9ba2.56be04",
+        "type": "inject",
+        "z": "172d02ccd8ae9735",
+        "name": "Variable",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{     \"authRequired\": true,     \"challenge\": \"KSO+hOFs1q5SkEnx8bvp67Om2zyHDD6ZJF4NHAa3R94=\",     \"message-id\": \"f8100636.83edd8\",     \"salt\": \"aszng9OoS6ybw9yTW2WR4GySMNdM3srSQ4KE70aungY=\",     \"status\": \"ok\" }",
+        "payloadType": "json",
+        "x": 500,
+        "y": 440,
+        "wires": [
+            [
+                "b699085c.1bbdd8"
+            ]
+        ]
+    },
+    {
+        "id": "786daa7f.3fe284",
+        "type": "function",
+        "z": "172d02ccd8ae9735",
+        "name": "Auth Function",
+        "func": "var CryptoJS = context.global.cryptojs;\n\nvar secret_hash = CryptoJS.SHA256(msg.password + msg.salt);\nvar secret = CryptoJS.enc.Base64.stringify(secret_hash);\n\nvar auth_response_hash = CryptoJS.SHA256(secret + msg.challenge);\nvar auth_response = CryptoJS.enc.Base64.stringify(auth_response_hash);\n\nmsg.payload = auth_response;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 420,
+        "wires": [
+            [
+                "b958d436.f24a48"
+            ]
+        ]
+    },
+    {
+        "id": "b958d436.f24a48",
+        "type": "debug",
+        "z": "172d02ccd8ae9735",
+        "name": "Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b699085c.1bbdd8",
+        "type": "change",
+        "z": "172d02ccd8ae9735",
+        "name": "Assign Variables",
+        "rules": [
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "msg",
+                "to": "password",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "salt",
+                "pt": "msg",
+                "to": "payload.salt",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "challenge",
+                "pt": "msg",
+                "to": "payload.challenge",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 440,
+        "wires": [
+            [
+                "786daa7f.3fe284"
+            ]
+        ]
     }
 ]
