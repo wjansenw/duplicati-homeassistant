@@ -14,6 +14,7 @@ nodered:$ cat duplicati_config.yaml
 duplicatiservers:
   - IP: "192.168.0.1"
     port: 8200
+    password: ui-password
   - IP: "192.168.0.2"
     port: 8200
 mqtt:
