@@ -8,21 +8,6 @@
         "env": []
     },
     {
-        "id": "679c5775.a84ad8",
-        "type": "tab",
-        "label": "Duplicati",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "172d02ccd8ae9735",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "b1e48b9e9dfab9e4",
         "type": "group",
         "z": "3c271f19ec74d126",
@@ -67,13 +52,12 @@
             "6defae5837b5efe8",
             "53913a3185841db0",
             "a54195efd786506f",
-            "21b3338a5e0f6ec3",
             "a68bc3f58fc127ce"
         ],
         "x": 2514,
-        "y": 439,
-        "w": 1962,
-        "h": 162
+        "y": 479,
+        "w": 1822,
+        "h": 122
     },
     {
         "id": "f9550fa8be23ab21",
@@ -188,15 +172,19 @@
             "b732ea8fca8317d9",
             "eddf2bb02d8eeb30",
             "b094e874d1a3f262",
-            "fb13e8f2efaae0cc",
             "c06d1468db282169",
             "0cf28ba083fd0b3c",
-            "0c30b841fc01a48a"
+            "0c30b841fc01a48a",
+            "11a971ca3ff367f9",
+            "fee42f017365b418",
+            "bfcaa89a6119039a",
+            "cc158ca6d8da3725",
+            "8f328bd111b33b59"
         ],
         "x": 14,
-        "y": 39,
-        "w": 2332,
-        "h": 608
+        "y": 79,
+        "w": 2182,
+        "h": 928
     },
     {
         "id": "097ea7fa4f15e4fc",
@@ -279,8 +267,8 @@
             "eabe3496630c0fae",
             "2af9291c912ca077"
         ],
-        "x": 714,
-        "y": 499,
+        "x": 854,
+        "y": 859,
         "w": 192,
         "h": 122
     },
@@ -316,20 +304,6 @@
         "sessionExpiry": ""
     },
     {
-        "id": "dce8d0e9.45717",
-        "type": "influxdb",
-        "hostname": "127.0.0.1",
-        "port": "8086",
-        "protocol": "http",
-        "database": "database",
-        "name": "local InfluxDb",
-        "usetls": false,
-        "tls": "",
-        "influxdbVersion": "2.0",
-        "url": "http://192.168.0.218:8086",
-        "rejectUnauthorized": false
-    },
-    {
         "id": "cc3598841c1cf86c",
         "type": "function",
         "z": "3c271f19ec74d126",
@@ -343,7 +317,7 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "c937c2a3713d06d7"
@@ -373,7 +347,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 120,
+        "y": 180,
         "wires": [
             [
                 "cc3598841c1cf86c"
@@ -450,7 +424,7 @@
         "to": "",
         "reg": false,
         "x": 1180,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "3d3ef141fe4a87d1"
@@ -470,7 +444,7 @@
         "stream": false,
         "addname": "",
         "x": 1010,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "4b3fad6ec5e8cf0a"
@@ -499,7 +473,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 1330,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "3f6bba55e2a6e236",
@@ -520,7 +494,7 @@
         "stream": false,
         "addname": "",
         "x": 410,
-        "y": 200,
+        "y": 240,
         "wires": [
             [
                 "34830568d895a1af"
@@ -555,7 +529,7 @@
         "to": "",
         "reg": false,
         "x": 580,
-        "y": 200,
+        "y": 240,
         "wires": [
             [
                 "023783676931fe66"
@@ -580,7 +554,7 @@
         "senderr": true,
         "headers": [],
         "x": 820,
-        "y": 200,
+        "y": 240,
         "wires": [
             [
                 "f2fdee69670534ac",
@@ -606,7 +580,7 @@
                 "t": "set",
                 "p": "cookies",
                 "pt": "msg",
-                "to": "responseCookies",
+                "to": "config.cookies",
                 "tot": "msg"
             }
         ],
@@ -615,8 +589,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 440,
-        "y": 420,
+        "x": 580,
+        "y": 780,
         "wires": [
             [
                 "7fe5ff57573b3e04"
@@ -647,10 +621,11 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 620,
-        "y": 420,
+        "x": 760,
+        "y": 780,
         "wires": [
             [
+                "11a971ca3ff367f9",
                 "f3dc05208f712b47"
             ]
         ]
@@ -670,7 +645,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1080,
-        "y": 200,
+        "y": 240,
         "wires": []
     },
     {
@@ -686,8 +661,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 420,
+        "x": 950,
+        "y": 780,
         "wires": [
             [
                 "f4e533b436a6cab3"
@@ -712,7 +687,7 @@
                 "t": "set",
                 "p": "cookies",
                 "pt": "msg",
-                "to": "responseCookies",
+                "to": "config.cookies",
                 "tot": "msg"
             }
         ],
@@ -721,8 +696,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1000,
-        "y": 420,
+        "x": 1140,
+        "y": 780,
         "wires": [
             [
                 "c8c8b4ffacdd3d36",
@@ -744,8 +719,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1200,
-        "y": 420,
+        "x": 1340,
+        "y": 780,
         "wires": []
     },
     {
@@ -772,8 +747,8 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 650,
-        "y": 480,
+        "x": 790,
+        "y": 840,
         "wires": [
             [
                 "4b11084b4b9d97c9"
@@ -807,8 +782,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 440,
-        "y": 480,
+        "x": 580,
+        "y": 840,
         "wires": [
             [
                 "e56a372fe2c392a9"
@@ -829,8 +804,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1270,
-        "y": 500,
+        "x": 1410,
+        "y": 860,
         "wires": []
     },
     {
@@ -846,8 +821,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
-        "y": 480,
+        "x": 990,
+        "y": 840,
         "wires": [
             [
                 "15844bccc348b17e"
@@ -870,16 +845,9 @@
             },
             {
                 "t": "set",
-                "p": "config.cookies",
-                "pt": "msg",
-                "to": "responseCookies",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
                 "p": "cookies",
                 "pt": "msg",
-                "to": "responseCookies",
+                "to": "config.cookies",
                 "tot": "msg"
             },
             {
@@ -895,8 +863,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1020,
-        "y": 480,
+        "x": 1160,
+        "y": 840,
         "wires": [
             [
                 "e4dd12bd221a0d20",
@@ -916,8 +884,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 400,
-        "y": 540,
+        "x": 550,
+        "y": 900,
         "wires": [
             [
                 "2af9291c912ca077",
@@ -939,8 +907,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1600,
-        "y": 560,
+        "x": 1740,
+        "y": 920,
         "wires": []
     },
     {
@@ -958,8 +926,8 @@
         "correl": "",
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
-        "x": 1050,
-        "y": 580,
+        "x": 1150,
+        "y": 940,
         "wires": []
     },
     {
@@ -975,8 +943,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 580,
+        "x": 950,
+        "y": 940,
         "wires": [
             [
                 "115a4c6d8f787037"
@@ -996,8 +964,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 810,
-        "y": 540,
+        "x": 950,
+        "y": 900,
         "wires": [
             [
                 "0c53df1e36e1311e",
@@ -1026,8 +994,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1410,
-        "y": 540,
+        "x": 1550,
+        "y": 900,
         "wires": [
             [
                 "9dd50a15d5fc1cc9",
@@ -1274,8 +1242,7 @@
         "y": 520,
         "wires": [
             [
-                "4e02d338d79c4c58",
-                "21b3338a5e0f6ec3"
+                "4e02d338d79c4c58"
             ]
         ]
     },
@@ -1458,13 +1425,6 @@
         "rules": [
             {
                 "t": "set",
-                "p": "cookies",
-                "pt": "msg",
-                "to": "responseCookies",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
                 "p": "current",
                 "pt": "msg",
                 "to": "payload",
@@ -1475,13 +1435,6 @@
                 "p": "payload",
                 "pt": "msg",
                 "to": "config.backups",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "config.cookies",
-                "pt": "msg",
-                "to": "responseCookies",
                 "tot": "msg"
             },
             {
@@ -1886,24 +1839,10 @@
             },
             {
                 "t": "set",
-                "p": "cookies",
-                "pt": "msg",
-                "to": "responseCookies",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
                 "p": "httpRequestTimeout",
                 "pt": "msg",
                 "to": "120000",
                 "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "config[msg.parts.index].cookies",
-                "pt": "flow",
-                "to": "responseCookies",
-                "tot": "msg"
             },
             {
                 "t": "set",
@@ -2173,7 +2112,7 @@
         "to": "",
         "reg": false,
         "x": 1500,
-        "y": 140,
+        "y": 180,
         "wires": [
             []
         ]
@@ -2224,8 +2163,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1680,
-        "y": 380,
+        "x": 1820,
+        "y": 740,
         "wires": [
             [
                 "a9bdc792493e8941",
@@ -2914,8 +2853,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1220,
-        "y": 540,
+        "x": 1360,
+        "y": 900,
         "wires": [
             [
                 "22a63bac60863174"
@@ -3076,32 +3015,6 @@
         ]
     },
     {
-        "id": "21b3338a5e0f6ec3",
-        "type": "change",
-        "z": "3c271f19ec74d126",
-        "g": "3cbec6f36cae1435",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "config[msg.parts_machine.index].cookies",
-                "pt": "flow",
-                "to": "responseCookies",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 4260,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e10be06ea94060c6",
         "type": "yaml",
         "z": "3c271f19ec74d126",
@@ -3109,7 +3022,7 @@
         "property": "payload",
         "name": "",
         "x": 610,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "4b82e6663b5653ca",
@@ -3131,7 +3044,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 440,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "e10be06ea94060c6"
@@ -3166,7 +3079,7 @@
         "to": "",
         "reg": false,
         "x": 1040,
-        "y": 80,
+        "y": 120,
         "wires": [
             [
                 "90c43550e320f553"
@@ -3188,7 +3101,7 @@
         "rh": 0,
         "inputs": 1,
         "x": 1250,
-        "y": 80,
+        "y": 120,
         "wires": [
             []
         ]
@@ -3214,7 +3127,7 @@
         "to": "",
         "reg": false,
         "x": 840,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "aa1fad3d5e6964aa"
@@ -3347,6 +3260,21 @@
                 "t": "delete",
                 "p": "responseUrl",
                 "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "cookies",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "config.cookies",
+                "pt": "msg"
             }
         ],
         "action": "",
@@ -3354,8 +3282,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 240,
+        "x": 1180,
+        "y": 300,
         "wires": [
             [
                 "2541938168f8f20f"
@@ -3386,8 +3314,8 @@
                 "valueValue": "application/x-www-form-urlencoded"
             }
         ],
-        "x": 1370,
-        "y": 240,
+        "x": 1400,
+        "y": 300,
         "wires": [
             [
                 "b732ea8fca8317d9"
@@ -3409,7 +3337,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1630,
-        "y": 240,
+        "y": 280,
         "wires": []
     },
     {
@@ -3426,7 +3354,7 @@
         "finalize": "",
         "libs": [],
         "x": 1200,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "0c30b841fc01a48a"
@@ -3447,7 +3375,7 @@
         "finalize": "",
         "libs": [],
         "x": 1600,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "b094e874d1a3f262"
@@ -3479,30 +3407,13 @@
             }
         ],
         "x": 1770,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
-                "0cf28ba083fd0b3c"
+                "fee42f017365b418",
+                "cc158ca6d8da3725"
             ]
         ]
-    },
-    {
-        "id": "fb13e8f2efaae0cc",
-        "type": "debug",
-        "z": "3c271f19ec74d126",
-        "g": "162e31852cce599c",
-        "name": "after login with ui-pwd",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2190,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "c06d1468db282169",
@@ -3525,14 +3436,14 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 990,
-        "y": 300,
+        "x": 870,
+        "y": 340,
         "wires": [
             [
                 "9161a8eefe170aa8"
             ],
             [
-                "6f21c052f12d9d28"
+                "bfcaa89a6119039a"
             ]
         ]
     },
@@ -3545,16 +3456,42 @@
         "rules": [
             {
                 "t": "set",
-                "p": "cookies.session-auth",
+                "p": "url",
+                "pt": "msg",
+                "to": "config.url1",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers2.X-XSRF-Token",
+                "pt": "msg",
+                "to": "cookies.xsrf-token.value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "config.cookies.session-nonce",
+                "pt": "msg",
+                "to": "responseCookies.session-nonce",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "config.cookies.session-auth",
                 "pt": "msg",
                 "to": "responseCookies.session-auth",
                 "tot": "msg"
             },
             {
                 "t": "set",
-                "p": "url",
+                "p": "cookies",
                 "pt": "msg",
-                "to": "config.url1",
+                "to": "config.cookies",
                 "tot": "msg"
             }
         ],
@@ -3563,12 +3500,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
-        "y": 320,
+        "x": 2040,
+        "y": 360,
         "wires": [
             [
-                "fb13e8f2efaae0cc",
-                "023783676931fe66"
+                "6f21c052f12d9d28"
             ]
         ]
     },
@@ -3588,7 +3524,79 @@
             },
             {
                 "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
                 "p": "cookies",
+                "pt": "msg",
+                "to": "config.cookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1380,
+        "y": 360,
+        "wires": [
+            [
+                "37498c3b05e26bdc",
+                "eddf2bb02d8eeb30"
+            ]
+        ]
+    },
+    {
+        "id": "11a971ca3ff367f9",
+        "type": "debug",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "unparsed system info",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "fee42f017365b418",
+        "type": "debug",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "after login with ui-pwd 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2040,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "bfcaa89a6119039a",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.cookies",
                 "pt": "msg",
                 "to": "responseCookies",
                 "tot": "msg"
@@ -3599,141 +3607,54 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1380,
-        "y": 320,
+        "x": 540,
+        "y": 560,
         "wires": [
             [
-                "37498c3b05e26bdc",
-                "eddf2bb02d8eeb30"
+                "6f21c052f12d9d28"
             ]
         ]
     },
     {
-        "id": "317fa54a.feaf92",
-        "type": "http in",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "duplicati",
-        "url": "/duplicati",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 130,
-        "y": 140,
-        "wires": [
-            [
-                "7c0f221e.09a594",
-                "7d91ffe7.fd07d"
-            ]
-        ]
-    },
-    {
-        "id": "7c0f221e.09a594",
-        "type": "json",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "duplicati response",
-        "property": "payload",
-        "action": "obj",
-        "pretty": true,
-        "x": 330,
-        "y": 200,
-        "wires": [
-            [
-                "63a5bf76.3aafc",
-                "13a58b9b.126104"
-            ]
-        ]
-    },
-    {
-        "id": "13a58b9b.126104",
-        "type": "http response",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "",
-        "statusCode": "200",
-        "headers": {},
-        "x": 520,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "63a5bf76.3aafc",
+        "id": "cc158ca6d8da3725",
         "type": "switch",
-        "z": "679c5775.a84ad8",
-        "d": true,
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
         "name": "",
-        "property": "payload.Data.MainOperation",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "Backup",
+                "t": "cont",
+                "v": "OK",
                 "vt": "str"
             },
             {
-                "t": "eq",
-                "v": "Repair",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Compact",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "Restore",
-                "vt": "str"
+                "t": "else"
             }
         ],
-        "checkall": "false",
+        "checkall": "true",
         "repair": false,
-        "outputs": 4,
-        "x": 510,
-        "y": 200,
+        "outputs": 2,
+        "x": 1840,
+        "y": 300,
         "wires": [
             [
-                "31f475f5.c91cba"
+                "0cf28ba083fd0b3c"
             ],
             [
-                "47564f7e.896c38"
-            ],
-            [
-                "47564f7e.896c38"
-            ],
-            [
-                "19b4e6d1.06dff9"
+                "8f328bd111b33b59"
             ]
         ]
     },
     {
-        "id": "262ee358.b77724",
-        "type": "split",
-        "z": "679c5775.a84ad8",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 1350,
-        "y": 240,
-        "wires": [
-            [
-                "cfad4a2fc050959a",
-                "0f88133884740219"
-            ]
-        ]
-    },
-    {
-        "id": "2ef4e93a.5e2a56",
+        "id": "8f328bd111b33b59",
         "type": "delay",
-        "z": "679c5775.a84ad8",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
+        "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -3742,473 +3663,13 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
+        "allowrate": false,
         "outputs": 1,
-        "x": 1000,
-        "y": 200,
-        "wires": [
-            [
-                "1206c168.36e417"
-            ]
-        ]
-    },
-    {
-        "id": "31f475f5.c91cba",
-        "type": "function",
-        "z": "679c5775.a84ad8",
-        "name": "backup",
-        "func": "msg.payload = [\n    {\n        measurement: \"files\",\n        fields: {\n            Deleted: msg.payload.Data.DeletedFiles,\n\t\t\tModified: msg.payload.Data.ModifiedFiles,\n\t\t\tExamined: msg.payload.Data.ExaminedFiles,\n\t\t\tOpened: msg.payload.Data.OpenedFiles,\n\t\t\tAdded: msg.payload.Data.AddedFiles,\n\t\t\tNotProcessed: msg.payload.Data.NotProcessedFiles,\n\t\t\tTooLarge: msg.payload.Data.TooLargeFiles,\n\t\t\tWithError: msg.payload.Data.FilesWithError,\n\t\t\tFilesUploaded: msg.payload.Data.BackendStatistics.FilesUploaded,\n\t\t\tFilesDownloaded: msg.payload.Data.BackendStatistics.FilesDownloaded,\n\t\t\tFilesDeleted: msg.payload.Data.BackendStatistics.FilesDeleted,\n\t\t\tUnknownFileCount: msg.payload.Data.BackendStatistics.UnknownFileCount,\n\t\t\tKnownFileCount: msg.payload.Data.BackendStatistics.KnownFileCount,\n\t\t\tListCount: msg.payload.Data.BackendStatistics.BackupListCount\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    },\n    {\n        measurement: \"bytes\",\n        fields: {\n\t\t\tModified: msg.payload.Data.SizeOfModifiedFiles,\n\t\t\tAdded: msg.payload.Data.SizeOfAddedFiles,\n\t\t\tExamined: msg.payload.Data.SizeOfExaminedFiles,\n\t\t\tOpened: msg.payload.Data.SizeOfOpenedFiles,\n\t\t\tUploaded: msg.payload.Data.BackendStatistics.BytesUploaded,\n\t\t\tDownloaded: msg.payload.Data.BackendStatistics.BytesDownloaded,\n\t\t\tUnknownFile: msg.payload.Data.BackendStatistics.UnknownFileSize,\n\t\t\tKnown: msg.payload.Data.BackendStatistics.KnownFileSize\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    },\n\t{\n        measurement: \"times\",\n        fields: {\n\t\t\tEndTime: new Date(msg.payload.Data.EndTime).getTime(),\n\t\t\tBeginTime: new Date(msg.payload.Data.BeginTime).getTime(),\n\t\t\tDuration: new Date(msg.payload.Data.EndTime).getTime()-new Date(msg.payload.Data.BeginTime).getTime(),\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    }\n];\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 40,
-        "wires": [
-            [
-                "2ef4e93a.5e2a56",
-                "ac69f0462b3b942f"
-            ]
-        ]
-    },
-    {
-        "id": "47564f7e.896c38",
-        "type": "function",
-        "z": "679c5775.a84ad8",
-        "name": "repair/compact",
-        "func": "msg.payload = [\n    {\n        measurement: \"files\",\n        fields: {\n\t\t\tFilesUploaded: msg.payload.Data.BackendStatistics.FilesUploaded,\n\t\t\tFilesDownloaded: msg.payload.Data.BackendStatistics.FilesDownloaded,\n\t\t\tFilesDeleted: msg.payload.Data.BackendStatistics.FilesDeleted,\n\t\t\tUnknownFileCount: msg.payload.Data.BackendStatistics.UnknownFileCount,\n\t\t\tKnownFileCount: msg.payload.Data.BackendStatistics.KnownFileCount\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    },\n    {\n        measurement: \"bytes\",\n        fields: {\n\t\t\tUploaded: msg.payload.Data.BackendStatistics.BytesUploaded,\n\t\t\tDownloaded: msg.payload.Data.BackendStatistics.BytesDownloaded,\n\t\t\tUnknownFile: msg.payload.Data.BackendStatistics.UnknownFileSize,\n\t\t\tKnown: msg.payload.Data.BackendStatistics.KnownFileSize\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    },\n\t{\n        measurement: \"times\",\n        fields: {\n\t\t\tEndTime: new Date(msg.payload.Data.EndTime).getTime(),\n\t\t\tBeginTime: new Date(msg.payload.Data.BeginTime).getTime(),\n\t\t\tDuration: new Date(msg.payload.Data.EndTime).getTime()-new Date(msg.payload.Data.BeginTime).getTime(),\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    }\n];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 720,
-        "y": 200,
-        "wires": [
-            [
-                "2ef4e93a.5e2a56",
-                "ac69f0462b3b942f"
-            ]
-        ]
-    },
-    {
-        "id": "19b4e6d1.06dff9",
-        "type": "function",
-        "z": "679c5775.a84ad8",
-        "name": "restore",
-        "func": "msg.payload = [\n    {\n        measurement: \"files\",\n        fields: {\n\t\t\tFilesRestored: msg.payload.Data.BackendStatistics.FilesRestored,\n\t\t\tFilesPatched: msg.payload.Data.BackendStatistics.FilesPatched,\n\t\t\tFilesDeleted: msg.payload.Data.BackendStatistics.FilesDeleted,\n\t\t\tUnknownFileCount: msg.payload.Data.BackendStatistics.UnknownFileCount,\n\t\t\tKnownFileCount: msg.payload.Data.BackendStatistics.KnownFileCount\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    },\n    {\n        measurement: \"bytes\",\n        fields: {\n\t\t\tRestored: msg.payload.Data.SizeOfRestoredFiles,\n\t\t\tUploaded: msg.payload.Data.BackendStatistics.BytesUploaded,\n\t\t\tDownloaded: msg.payload.Data.BackendStatistics.BytesDownloaded,\n\t\t\tUnknownFile: msg.payload.Data.BackendStatistics.UnknownFileSize,\n\t\t\tKnown: msg.payload.Data.BackendStatistics.KnownFileSize\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    },\n\t{\n        measurement: \"times\",\n        fields: {\n\t\t\tEndTime: new Date(msg.payload.Data.EndTime).getTime(),\n\t\t\tBeginTime: new Date(msg.payload.Data.BeginTime).getTime(),\n\t\t\tDuration: new Date(msg.payload.Data.EndTime).getTime()-new Date(msg.payload.Data.BeginTime).getTime(),\n        },\n        tags:{\n\t\t\tBackupName: msg.payload.Extra[\"backup-name\"],\n\t\t\tMainOperation: msg.payload.Data.MainOperation,\n\t\t\tParsedResult: msg.payload.Data.ParsedResult,\n\t\t\tVersion: msg.payload.Data.Version\n        },\n        timestamp: new Date(msg.payload.Data.BeginTime).getTime()\n    }\n];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 700,
-        "y": 280,
-        "wires": [
-            [
-                "2ef4e93a.5e2a56",
-                "ac69f0462b3b942f"
-            ]
-        ]
-    },
-    {
-        "id": "e7bc50af.06c1a8",
-        "type": "inject",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "900",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1020,
-        "y": 340,
-        "wires": [
-            [
-                "1206c168.36e417"
-            ]
-        ]
-    },
-    {
-        "id": "7d91ffe7.fd07d",
-        "type": "file",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "write to file",
-        "filename": "/data/duplicati/received_messages",
-        "filenameType": "str",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 330,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "85700e66.8ffdf8",
-        "type": "file in",
-        "z": "679c5775.a84ad8",
-        "name": "",
-        "filename": "/data/duplicati/received_messages",
-        "filenameType": "str",
-        "format": "lines",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 350,
-        "y": 400,
-        "wires": [
-            [
-                "7c0f221e.09a594"
-            ]
-        ]
-    },
-    {
-        "id": "a4e09259.087e7",
-        "type": "inject",
-        "z": "679c5775.a84ad8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 400,
-        "wires": [
-            [
-                "85700e66.8ffdf8"
-            ]
-        ]
-    },
-    {
-        "id": "d7568d07.bf6e",
-        "type": "comment",
-        "z": "679c5775.a84ad8",
-        "name": "reprocess saved messages",
-        "info": "",
-        "x": 300,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "8690da6c.97a75",
-        "type": "catch",
-        "z": "679c5775.a84ad8",
-        "name": "",
-        "scope": [
-            "7c0f221e.09a594"
-        ],
-        "uncaught": false,
-        "x": 280,
-        "y": 540,
-        "wires": [
-            [
-                "4def1099.0e74d8"
-            ]
-        ]
-    },
-    {
-        "id": "4def1099.0e74d8",
-        "type": "http response",
-        "z": "679c5775.a84ad8",
-        "name": "",
-        "statusCode": "400",
-        "headers": {},
-        "x": 420,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "10daee26.b97e4a",
-        "type": "influxdb out",
-        "z": "679c5775.a84ad8",
-        "influxdb": "dce8d0e9.45717",
-        "name": "",
-        "measurement": "",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "duplicati",
-        "precisionV18FluxV20": "ms",
-        "retentionPolicyV18Flux": "",
-        "org": "jvd",
-        "bucket": "duplicati",
-        "x": 1690,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "1206c168.36e417",
-        "type": "influxdb in",
-        "z": "679c5775.a84ad8",
-        "influxdb": "dce8d0e9.45717",
-        "name": "",
-        "query": "from(bucket: \"duplicati\")\n    |> range(start: -1y, stop: now())\n    |> filter(fn: (r) => r[\"_field\"] == \"EndTime\")\n    |> group(columns: [\"BackupName\"])\n    |> yield(name: \"last\")",
-        "rawOutput": false,
-        "precision": "",
-        "retentionPolicy": "",
-        "org": "jvd",
-        "x": 1190,
-        "y": 240,
-        "wires": [
-            [
-                "262ee358.b77724",
-                "b5807be60e9c6c8a"
-            ]
-        ]
-    },
-    {
-        "id": "ac69f0462b3b942f",
-        "type": "influxdb batch",
-        "z": "679c5775.a84ad8",
-        "influxdb": "dce8d0e9.45717",
-        "precision": "",
-        "retentionPolicy": "",
-        "name": "",
-        "database": "database",
-        "precisionV18FluxV20": "ms",
-        "retentionPolicyV18Flux": "",
-        "org": "jvd",
-        "bucket": "duplicati",
-        "x": 1010,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "ceea27386cd92936",
-        "type": "debug",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "debug 1",
-        "active": false,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1610,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "cfad4a2fc050959a",
-        "type": "function",
-        "z": "679c5775.a84ad8",
-        "name": "",
-        "func": "var current_time = new Date().getTime();\nvar end_time = new Date(msg.payload._value).getTime();\nvar duration = current_time - end_time;\n\n\n\n\nvar payload = [\n    {\n\t\tDurationSinceLastBackup: duration,\n\n    },\n    {\n        BackupName: msg.payload.BackupName\n    }\n]\n\nmsg.payload = payload;\nmsg.measurement = \"LastBackup\"\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1500,
-        "y": 240,
-        "wires": [
-            [
-                "10daee26.b97e4a",
-                "ceea27386cd92936"
-            ]
-        ]
-    },
-    {
-        "id": "b5807be60e9c6c8a",
-        "type": "debug",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
         "x": 1370,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "0f88133884740219",
-        "type": "debug",
-        "z": "679c5775.a84ad8",
-        "d": true,
-        "name": "debug 5",
-        "active": false,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1470,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "755f0b8.5893ff4",
-        "type": "inject",
-        "z": "172d02ccd8ae9735",
-        "name": "Manual Entry",
-        "props": [
-            {
-                "p": "password",
-                "v": "password",
-                "vt": "str"
-            },
-            {
-                "p": "salt",
-                "v": "aszng9OoS6ybw9yTW2WR4GySMNdM3srSQ4KE70aungY=",
-                "vt": "str"
-            },
-            {
-                "p": "challenge",
-                "v": "KSO+hOFs1q5SkEnx8bvp67Om2zyHDD6ZJF4NHAa3R94=",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 530,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
-                "786daa7f.3fe284"
-            ]
-        ]
-    },
-    {
-        "id": "36ed9ba2.56be04",
-        "type": "inject",
-        "z": "172d02ccd8ae9735",
-        "name": "Variable",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{     \"authRequired\": true,     \"challenge\": \"KSO+hOFs1q5SkEnx8bvp67Om2zyHDD6ZJF4NHAa3R94=\",     \"message-id\": \"f8100636.83edd8\",     \"salt\": \"aszng9OoS6ybw9yTW2WR4GySMNdM3srSQ4KE70aungY=\",     \"status\": \"ok\" }",
-        "payloadType": "json",
-        "x": 500,
-        "y": 440,
-        "wires": [
-            [
-                "b699085c.1bbdd8"
-            ]
-        ]
-    },
-    {
-        "id": "786daa7f.3fe284",
-        "type": "function",
-        "z": "172d02ccd8ae9735",
-        "name": "Auth Function",
-        "func": "var CryptoJS = context.global.cryptojs;\n\nvar secret_hash = CryptoJS.SHA256(msg.password + msg.salt);\nvar secret = CryptoJS.enc.Base64.stringify(secret_hash);\n\nvar auth_response_hash = CryptoJS.SHA256(secret + msg.challenge);\nvar auth_response = CryptoJS.enc.Base64.stringify(auth_response_hash);\n\nmsg.payload = auth_response;\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 420,
-        "wires": [
-            [
-                "b958d436.f24a48"
-            ]
-        ]
-    },
-    {
-        "id": "b958d436.f24a48",
-        "type": "debug",
-        "z": "172d02ccd8ae9735",
-        "name": "Output",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1100,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "b699085c.1bbdd8",
-        "type": "change",
-        "z": "172d02ccd8ae9735",
-        "name": "Assign Variables",
-        "rules": [
-            {
-                "t": "set",
-                "p": "password",
-                "pt": "msg",
-                "to": "password",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "salt",
-                "pt": "msg",
-                "to": "payload.salt",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "challenge",
-                "pt": "msg",
-                "to": "payload.challenge",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 690,
-        "y": 440,
-        "wires": [
-            [
-                "786daa7f.3fe284"
+                "9161a8eefe170aa8"
             ]
         ]
     }
