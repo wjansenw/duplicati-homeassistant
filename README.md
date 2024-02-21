@@ -24,7 +24,7 @@ mqtt:
 ```
 
 ### Backup Device in Home Assistant
-If configured correctly, your backup from Duplicati will appear as a new device in Home Asssitant. You can start a backup by toggling the switch. 
+If configured correctly, your backup from Duplicati will appear as a new device in Home Asssitant. You can start a backup by toggling the switch. Attributes of the switch contains other backup information.
 ![](HA_duplicati_screenshot.PNG)
 
 ### Remarks 
