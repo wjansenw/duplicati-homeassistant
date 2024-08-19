@@ -191,12 +191,14 @@
             "f83b22f03d86b502",
             "4ffc09b784acbab8",
             "12828d5b06f6d6a9",
-            "14fbacecaebf6f51"
+            "14fbacecaebf6f51",
+            "63a7f8034d92dd2f",
+            "a03d542db9da8ff9"
         ],
         "x": 14,
         "y": 79,
-        "w": 2182,
-        "h": 928
+        "w": 2232,
+        "h": 1088
     },
     {
         "id": "097ea7fa4f15e4fc",
@@ -229,7 +231,7 @@
         ],
         "x": 44,
         "y": 1519,
-        "w": 1352,
+        "w": 1362,
         "h": 602
     },
     {
@@ -279,8 +281,8 @@
             "eabe3496630c0fae",
             "2af9291c912ca077"
         ],
-        "x": 844,
-        "y": 859,
+        "x": 854,
+        "y": 1019,
         "w": 212,
         "h": 122
     },
@@ -375,42 +377,42 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload.url1",
+                "p": "payload.base_url",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port",
                 "tot": "jsonata"
             },
             {
                 "t": "set",
-                "p": "payload.url2",
+                "p": "payload.url_backups",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/api/v1/backups\"",
                 "tot": "jsonata"
             },
             {
                 "t": "set",
-                "p": "payload.url3",
+                "p": "payload.url_systeminfo",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/api/v1/systeminfo\"",
                 "tot": "jsonata"
             },
             {
                 "t": "set",
-                "p": "payload.url4",
+                "p": "payload.url_progressstate",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/api/v1/progressstate\"",
                 "tot": "jsonata"
             },
             {
                 "t": "set",
-                "p": "payload.url5",
+                "p": "payload.url_backup",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/api/v1/backup/\"",
                 "tot": "jsonata"
             },
             {
                 "t": "set",
-                "p": "payload.url6",
+                "p": "payload.url_serverstate",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/api/v1/serverstate/\"",
                 "tot": "jsonata"
@@ -424,7 +426,7 @@
             },
             {
                 "t": "set",
-                "p": "payload.url7",
+                "p": "payload.url_login_legacy",
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/login.cgi\"",
                 "tot": "jsonata"
@@ -442,7 +444,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1180,
+        "x": 1160,
         "y": 180,
         "wires": [
             [
@@ -507,7 +509,7 @@
         "type": "split",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "",
+        "name": "split per backupserver",
         "splt": "\\n",
         "spltType": "str",
         "arraySplt": 1,
@@ -515,7 +517,7 @@
         "stream": false,
         "addname": "",
         "property": "payload",
-        "x": 410,
+        "x": 340,
         "y": 240,
         "wires": [
             [
@@ -528,7 +530,7 @@
         "type": "change",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "",
+        "name": "save payload to config",
         "rules": [
             {
                 "t": "set",
@@ -543,7 +545,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
+        "x": 610,
         "y": 240,
         "wires": [
             [
@@ -556,7 +558,7 @@
         "type": "http request",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "login attempt",
+        "name": "login attempt legacy",
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
@@ -568,7 +570,7 @@
         "authType": "",
         "senderr": true,
         "headers": [],
-        "x": 1090,
+        "x": 1420,
         "y": 240,
         "wires": [
             [
@@ -588,7 +590,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config.url3",
+                "to": "config.url_systeminfo",
                 "tot": "msg"
             },
             {
@@ -611,8 +613,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 780,
+        "x": 590,
+        "y": 940,
         "wires": [
             [
                 "7fe5ff57573b3e04"
@@ -636,8 +638,8 @@
         "authType": "",
         "senderr": true,
         "headers": [],
-        "x": 760,
-        "y": 780,
+        "x": 770,
+        "y": 940,
         "wires": [
             [
                 "11a971ca3ff367f9",
@@ -659,8 +661,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1330,
-        "y": 240,
+        "x": 1660,
+        "y": 220,
         "wires": []
     },
     {
@@ -676,8 +678,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
-        "y": 780,
+        "x": 960,
+        "y": 940,
         "wires": [
             [
                 "f4e533b436a6cab3"
@@ -718,8 +720,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1140,
-        "y": 780,
+        "x": 1150,
+        "y": 940,
         "wires": [
             [
                 "c8c8b4ffacdd3d36",
@@ -741,8 +743,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1340,
-        "y": 780,
+        "x": 1350,
+        "y": 940,
         "wires": []
     },
     {
@@ -769,8 +771,8 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 790,
-        "y": 840,
+        "x": 800,
+        "y": 1000,
         "wires": [
             [
                 "4b11084b4b9d97c9"
@@ -788,7 +790,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config.url2",
+                "to": "config.url_backups",
                 "tot": "msg"
             },
             {
@@ -811,8 +813,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 840,
+        "x": 590,
+        "y": 1000,
         "wires": [
             [
                 "e56a372fe2c392a9"
@@ -833,8 +835,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1410,
-        "y": 860,
+        "x": 1420,
+        "y": 1020,
         "wires": []
     },
     {
@@ -850,8 +852,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 840,
+        "x": 1000,
+        "y": 1000,
         "wires": [
             [
                 "15844bccc348b17e"
@@ -892,8 +894,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 840,
+        "x": 1170,
+        "y": 1000,
         "wires": [
             [
                 "e4dd12bd221a0d20",
@@ -913,8 +915,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 550,
-        "y": 900,
+        "x": 560,
+        "y": 1060,
         "wires": [
             [
                 "2af9291c912ca077",
@@ -936,8 +938,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1740,
-        "y": 920,
+        "x": 1750,
+        "y": 1080,
         "wires": []
     },
     {
@@ -955,8 +957,8 @@
         "correl": "",
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
-        "x": 1150,
-        "y": 940,
+        "x": 1160,
+        "y": 1100,
         "wires": []
     },
     {
@@ -972,8 +974,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
-        "y": 940,
+        "x": 960,
+        "y": 1100,
         "wires": [
             [
                 "115a4c6d8f787037"
@@ -993,8 +995,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
-        "y": 900,
+        "x": 960,
+        "y": 1060,
         "wires": [
             [
                 "0c53df1e36e1311e",
@@ -1023,8 +1025,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1550,
-        "y": 900,
+        "x": 1560,
+        "y": 1060,
         "wires": [
             [
                 "9dd50a15d5fc1cc9",
@@ -1196,7 +1198,7 @@
         "z": "3c271f19ec74d126",
         "g": "3cbec6f36cae1435",
         "name": "response start backup",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1219,7 +1221,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "msg.config.url5&msg.payload.Backup.ID&\"/run\"",
+                "to": "msg.config.url_backup&msg.payload.Backup.ID&\"/run\"",
                 "tot": "jsonata"
             },
             {
@@ -1366,7 +1368,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config[msg.parts.index].url4",
+                "to": "config[msg.parts.index].url_progressstate",
                 "tot": "flow"
             },
             {
@@ -1685,7 +1687,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config.url2",
+                "to": "config.url_backups",
                 "tot": "msg"
             },
             {
@@ -1769,7 +1771,8 @@
             "023783676931fe66",
             "7fe5ff57573b3e04",
             "e56a372fe2c392a9",
-            "9ce215d6e6943940"
+            "9ce215d6e6943940",
+            "f83b22f03d86b502"
         ],
         "uncaught": false,
         "x": 130,
@@ -1877,7 +1880,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "msg.config.url6&\"?lasteventid=\"&msg.payload.LastEventID&\"&longpoll=true&duration=119s\"",
+                "to": "msg.config.url_serverstate&\"?lasteventid=\"&msg.payload.LastEventID&\"&longpoll=true&duration=119s\"",
                 "tot": "jsonata"
             },
             {
@@ -1979,7 +1982,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "msg.config.url6&\"?lasteventid=-1&longpoll=false&duration=119s\"",
+                "to": "msg.config.url_serverstate&\"?lasteventid=-1&longpoll=false&duration=119s\"",
                 "tot": "jsonata"
             },
             {
@@ -2239,8 +2242,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1820,
-        "y": 760,
+        "x": 1830,
+        "y": 920,
         "wires": [
             [
                 "a9bdc792493e8941",
@@ -2467,7 +2470,7 @@
         "z": "3c271f19ec74d126",
         "g": "097ea7fa4f15e4fc",
         "name": "waited - checking again",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2475,7 +2478,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1230,
+        "x": 1250,
         "y": 1620,
         "wires": []
     },
@@ -2612,7 +2615,7 @@
         "z": "3c271f19ec74d126",
         "g": "097ea7fa4f15e4fc",
         "name": "EHOSTUNREACH ",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -2866,7 +2869,7 @@
         "y": 1400,
         "wires": [
             [
-                "023783676931fe66"
+                "cf82018dfcfca6e9"
             ]
         ]
     },
@@ -2929,8 +2932,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1360,
-        "y": 900,
+        "x": 1370,
+        "y": 1060,
         "wires": [
             [
                 "22a63bac60863174"
@@ -3183,7 +3186,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 1,
-        "x": 1330,
+        "x": 1290,
         "y": 120,
         "wires": [
             []
@@ -3329,7 +3332,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config.url7",
+                "to": "config.url_login_legacy",
                 "tot": "msg"
             },
             {
@@ -3365,8 +3368,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1180,
-        "y": 300,
+        "x": 1160,
+        "y": 320,
         "wires": [
             [
                 "2541938168f8f20f"
@@ -3398,7 +3401,7 @@
             }
         ],
         "x": 1400,
-        "y": 300,
+        "y": 320,
         "wires": [
             [
                 "b732ea8fca8317d9",
@@ -3421,7 +3424,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1630,
-        "y": 280,
+        "y": 300,
         "wires": []
     },
     {
@@ -3438,7 +3441,7 @@
         "finalize": "",
         "libs": [],
         "x": 1200,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
                 "0c30b841fc01a48a"
@@ -3459,7 +3462,7 @@
         "finalize": "",
         "libs": [],
         "x": 1600,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
                 "b094e874d1a3f262"
@@ -3491,7 +3494,7 @@
             }
         ],
         "x": 1770,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
                 "fee42f017365b418",
@@ -3504,7 +3507,7 @@
         "type": "switch",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "",
+        "name": "successfull connection?",
         "property": "responseUrl",
         "propertyType": "msg",
         "rules": [
@@ -3520,7 +3523,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 950,
+        "x": 850,
         "y": 320,
         "wires": [
             [
@@ -3542,7 +3545,7 @@
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config.url1",
+                "to": "config.base_url",
                 "tot": "msg"
             },
             {
@@ -3591,8 +3594,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2040,
-        "y": 360,
+        "x": 2140,
+        "y": 300,
         "wires": [
             [
                 "6f21c052f12d9d28"
@@ -3634,10 +3637,9 @@
         "to": "",
         "reg": false,
         "x": 1380,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
-                "37498c3b05e26bdc",
                 "eddf2bb02d8eeb30"
             ]
         ]
@@ -3656,8 +3658,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 980,
-        "y": 740,
+        "x": 990,
+        "y": 900,
         "wires": []
     },
     {
@@ -3675,7 +3677,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 2040,
-        "y": 440,
+        "y": 460,
         "wires": []
     },
     {
@@ -3734,8 +3736,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1840,
-        "y": 300,
+        "x": 1950,
+        "y": 320,
         "wires": [
             [
                 "0cf28ba083fd0b3c"
@@ -3764,7 +3766,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1380,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "9161a8eefe170aa8"
@@ -3776,7 +3778,7 @@
         "type": "switch",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "",
+        "name": "legacy vs kestrel webserver",
         "property": "config.mode",
         "propertyType": "msg",
         "rules": [
@@ -3792,7 +3794,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 750,
+        "x": 880,
         "y": 240,
         "wires": [
             [
@@ -3855,7 +3857,7 @@
         "type": "http request",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "",
+        "name": "login attempt kestrel",
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
@@ -3865,9 +3867,9 @@
         "proxy": "",
         "insecureHTTPParser": false,
         "authType": "",
-        "senderr": false,
+        "senderr": true,
         "headers": [],
-        "x": 1110,
+        "x": 1140,
         "y": 500,
         "wires": [
             [
@@ -3880,13 +3882,13 @@
         "type": "change",
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
-        "name": "",
+        "name": "set url",
         "rules": [
             {
                 "t": "set",
                 "p": "url",
                 "pt": "msg",
-                "to": "config.url1",
+                "to": "config.base_url",
                 "tot": "msg"
             }
         ],
@@ -3895,7 +3897,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 910,
+        "x": 1130,
         "y": 240,
         "wires": [
             [
@@ -3930,8 +3932,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1440,
-        "y": 500,
+        "x": 1800,
+        "y": 520,
         "wires": [
             [
                 "6f21c052f12d9d28"
@@ -3947,11 +3949,11 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 1270,
-        "y": 500,
+        "x": 1390,
+        "y": 520,
         "wires": [
             [
-                "12828d5b06f6d6a9"
+                "63a7f8034d92dd2f"
             ]
         ]
     },
@@ -4127,6 +4129,64 @@
         "wires": [
             [
                 "eb19a0d50d55d21e"
+            ]
+        ]
+    },
+    {
+        "id": "63a7f8034d92dd2f",
+        "type": "switch",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1590,
+        "y": 520,
+        "wires": [
+            [
+                "a03d542db9da8ff9"
+            ],
+            [
+                "12828d5b06f6d6a9"
+            ]
+        ]
+    },
+    {
+        "id": "a03d542db9da8ff9",
+        "type": "delay",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1620,
+        "y": 780,
+        "wires": [
+            [
+                "cf82018dfcfca6e9"
             ]
         ]
     }
