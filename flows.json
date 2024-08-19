@@ -29,7 +29,7 @@
         ],
         "x": 2524,
         "y": 79,
-        "w": 1352,
+        "w": 1342,
         "h": 202
     },
     {
@@ -58,7 +58,7 @@
         ],
         "x": 2514,
         "y": 479,
-        "w": 2032,
+        "w": 2052,
         "h": 122
     },
     {
@@ -108,7 +108,7 @@
         ],
         "x": 2514,
         "y": 719,
-        "w": 2872,
+        "w": 2852,
         "h": 542
     },
     {
@@ -190,13 +190,12 @@
             "ca6325d212165253",
             "f83b22f03d86b502",
             "4ffc09b784acbab8",
-            "6669b1c8bc3d5dcf",
             "12828d5b06f6d6a9",
             "14fbacecaebf6f51"
         ],
-        "x": 34,
+        "x": 14,
         "y": 79,
-        "w": 2162,
+        "w": 2182,
         "h": 928
     },
     {
@@ -359,7 +358,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 150,
+        "x": 130,
         "y": 180,
         "wires": [
             [
@@ -600,16 +599,11 @@
                 "tot": "msg"
             },
             {
-                "t": "delete",
-                "p": "payload",
-                "pt": "msg"
-            },
-            {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -621,8 +615,7 @@
         "y": 780,
         "wires": [
             [
-                "7fe5ff57573b3e04",
-                "6669b1c8bc3d5dcf"
+                "7fe5ff57573b3e04"
             ]
         ]
     },
@@ -642,14 +635,7 @@
         "insecureHTTPParser": false,
         "authType": "",
         "senderr": true,
-        "headers": [
-            {
-                "keyType": "other",
-                "keyValue": "X-XSRF-Token",
-                "valueType": "msg",
-                "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
-            }
-        ],
+        "headers": [],
         "x": 760,
         "y": 780,
         "wires": [
@@ -665,7 +651,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "after login attempt",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -714,6 +700,13 @@
             },
             {
                 "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
                 "p": "cookies",
                 "pt": "msg",
                 "to": "config.cookies",
@@ -740,7 +733,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "after systeminfo",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -802,15 +795,15 @@
                 "t": "set",
                 "p": "cookies",
                 "pt": "msg",
-                "to": "responseCookies",
+                "to": "config.cookies",
                 "tot": "msg"
             },
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -881,9 +874,9 @@
             },
             {
                 "t": "set",
-                "p": "cookies",
+                "p": "config.cookies",
                 "pt": "msg",
-                "to": "config.cookies",
+                "to": "responseCookies",
                 "tot": "msg"
             },
             {
@@ -1211,7 +1204,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4400,
+        "x": 4420,
         "y": 520,
         "wires": []
     },
@@ -1238,10 +1231,10 @@
             },
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -1435,7 +1428,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 3420,
+        "x": 3460,
         "y": 800,
         "wires": [
             [
@@ -1677,7 +1670,7 @@
         "correl": "",
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
-        "x": 5310,
+        "x": 5290,
         "y": 1220,
         "wires": []
     },
@@ -1697,10 +1690,10 @@
             },
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -1722,7 +1715,7 @@
         "z": "3c271f19ec74d126",
         "g": "f9550fa8be23ab21",
         "name": "updated payload",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1823,14 +1816,7 @@
         "insecureHTTPParser": false,
         "authType": "",
         "senderr": true,
-        "headers": [
-            {
-                "keyType": "other",
-                "keyValue": "X-XSRF-Token",
-                "valueType": "msg",
-                "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
-            }
-        ],
+        "headers": [],
         "x": 2840,
         "y": 160,
         "wires": [
@@ -1910,10 +1896,10 @@
             },
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "config.cookies",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "responseCookies",
+                "tot": "msg"
             },
             {
                 "t": "set",
@@ -1927,6 +1913,13 @@
                 "p": "cookies",
                 "pt": "msg",
                 "to": "config.cookies",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "config.header",
                 "tot": "msg"
             }
         ],
@@ -1959,14 +1952,7 @@
         "insecureHTTPParser": false,
         "authType": "",
         "senderr": true,
-        "headers": [
-            {
-                "keyType": "other",
-                "keyValue": "X-XSRF-Token",
-                "valueType": "msg",
-                "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
-            }
-        ],
+        "headers": [],
         "x": 3510,
         "y": 160,
         "wires": [
@@ -2017,10 +2003,10 @@
             },
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -2839,7 +2825,7 @@
         "z": "3c271f19ec74d126",
         "g": "f9550fa8be23ab21",
         "name": "stopped flow",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2908,7 +2894,7 @@
         "z": "3c271f19ec74d126",
         "g": "f9550fa8be23ab21",
         "name": "10sec update",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3008,10 +2994,10 @@
             },
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -3197,7 +3183,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 1,
-        "x": 1290,
+        "x": 1330,
         "y": 120,
         "wires": [
             []
@@ -3426,7 +3412,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "salt & nonce",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3591,6 +3577,13 @@
                 "pt": "msg",
                 "to": "config.cookies",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "config.headers.X-XSRF-Token",
+                "pt": "msg",
+                "to": "cookies.xsrf-token.value",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -3655,7 +3648,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "unparsed system info",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3673,7 +3666,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "after login with ui-pwd 1",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3698,6 +3691,13 @@
                 "pt": "msg",
                 "to": "responseCookies",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "config.header.X-XSRF-Token",
+                "pt": "msg",
+                "to": "responseCookies.xsrf-token.value",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -3705,8 +3705,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 780,
+        "x": 1040,
+        "y": 420,
         "wires": [
             [
                 "6f21c052f12d9d28"
@@ -3904,24 +3904,6 @@
         ]
     },
     {
-        "id": "6669b1c8bc3d5dcf",
-        "type": "debug",
-        "z": "3c271f19ec74d126",
-        "g": "162e31852cce599c",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 730,
-        "y": 720,
-        "wires": []
-    },
-    {
         "id": "12828d5b06f6d6a9",
         "type": "change",
         "z": "3c271f19ec74d126",
@@ -3930,9 +3912,16 @@
         "rules": [
             {
                 "t": "set",
-                "p": "config.bearer",
+                "p": "config.header.Authorization",
                 "pt": "msg",
-                "to": "payload.AccessToken",
+                "to": "\"Bearer \"&msg.payload.AccessToken",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
                 "tot": "msg"
             }
         ],
@@ -3941,11 +3930,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
+        "x": 1440,
         "y": 500,
         "wires": [
             [
-                "bfcaa89a6119039a"
+                "6f21c052f12d9d28"
             ]
         ]
     },
@@ -3975,10 +3964,10 @@
         "rules": [
             {
                 "t": "set",
-                "p": "headers.Authorization",
+                "p": "headers",
                 "pt": "msg",
-                "to": "\"Bearer \"&msg.config.bearer",
-                "tot": "jsonata"
+                "to": "config.header",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -3986,8 +3975,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3330,
-        "y": 940,
+        "x": 3210,
+        "y": 800,
         "wires": [
             [
                 "9ce215d6e6943940"
@@ -4007,6 +3996,13 @@
                 "pt": "msg",
                 "to": "responseCookies",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cookies",
+                "pt": "msg",
+                "to": "config.cookies",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -4014,7 +4010,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3740,
+        "x": 3760,
         "y": 160,
         "wires": [
             [
@@ -4042,7 +4038,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 4160,
+        "x": 4170,
         "y": 520,
         "wires": [
             [
