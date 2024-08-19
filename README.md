@@ -15,8 +15,10 @@ duplicatiservers:
   - IP: "192.168.0.1"
     port: 8200
     password: ui-password
+    mode: "kestrel"
   - IP: "192.168.0.2"
     port: 8200
+    mode: "legacy"
 mqtt:
   broker: 192.168.0.3
   port: 1883
