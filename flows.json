@@ -24,12 +24,13 @@
             "afe95c7c19b6ba67",
             "c17adc9d1f1a10c4",
             "a9bdc792493e8941",
-            "ac8b25be99920ae8"
+            "ac8b25be99920ae8",
+            "a9bdaa8093b35072"
         ],
         "x": 2524,
         "y": 79,
-        "w": 1092,
-        "h": 182
+        "w": 1352,
+        "h": 202
     },
     {
         "id": "3cbec6f36cae1435",
@@ -52,11 +53,12 @@
             "6defae5837b5efe8",
             "53913a3185841db0",
             "a54195efd786506f",
-            "a68bc3f58fc127ce"
+            "a68bc3f58fc127ce",
+            "c9ca73bc47f598d7"
         ],
         "x": 2514,
         "y": 479,
-        "w": 1822,
+        "w": 2032,
         "h": 122
     },
     {
@@ -98,11 +100,15 @@
             "cc39b98c31d12b32",
             "6718913a407edb6c",
             "17abc136282147a7",
-            "e21f9f0e11dfc8a5"
+            "e21f9f0e11dfc8a5",
+            "99deff523224ad54",
+            "35f52fdd1b7d6217",
+            "8c1a8cdfa8e83d98",
+            "a9c362ef6860df03"
         ],
         "x": 2514,
         "y": 719,
-        "w": 2892,
+        "w": 2872,
         "h": 542
     },
     {
@@ -118,9 +124,9 @@
             "097ea7fa4f15e4fc",
             "228378e9f87205b1"
         ],
-        "x": 28,
+        "x": 18,
         "y": 1359,
-        "w": 2604,
+        "w": 2614,
         "h": 788
     },
     {
@@ -179,11 +185,18 @@
             "fee42f017365b418",
             "bfcaa89a6119039a",
             "cc158ca6d8da3725",
-            "8f328bd111b33b59"
+            "8f328bd111b33b59",
+            "cf82018dfcfca6e9",
+            "ca6325d212165253",
+            "f83b22f03d86b502",
+            "4ffc09b784acbab8",
+            "6669b1c8bc3d5dcf",
+            "12828d5b06f6d6a9",
+            "14fbacecaebf6f51"
         ],
-        "x": 14,
+        "x": 34,
         "y": 79,
-        "w": 2182,
+        "w": 2162,
         "h": 928
     },
     {
@@ -215,9 +228,9 @@
             "a31ebf3f7f5904ee",
             "f87b2f5f0c483aa5"
         ],
-        "x": 54,
+        "x": 44,
         "y": 1519,
-        "w": 1332,
+        "w": 1352,
         "h": 602
     },
     {
@@ -244,9 +257,9 @@
             "a8c615ca82c28d2f",
             "e2cba57a65c16589"
         ],
-        "x": 1414,
+        "x": 1404,
         "y": 1519,
-        "w": 1192,
+        "w": 1202,
         "h": 362
     },
     {
@@ -267,9 +280,9 @@
             "eabe3496630c0fae",
             "2af9291c912ca077"
         ],
-        "x": 854,
+        "x": 844,
         "y": 859,
-        "w": 192,
+        "w": 212,
         "h": 122
     },
     {
@@ -346,7 +359,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
+        "x": 150,
         "y": 180,
         "wires": [
             [
@@ -416,6 +429,13 @@
                 "pt": "msg",
                 "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/login.cgi\"",
                 "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload.url_login",
+                "pt": "msg",
+                "to": "\"http://\"&msg.payload.IP&\":\"&msg.payload.port&\"/api/v1/auth/login\"",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -443,6 +463,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
+        "property": "payload",
         "x": 1010,
         "y": 180,
         "wires": [
@@ -464,6 +485,7 @@
         "key": "topic",
         "joiner": "\\n",
         "joinerType": "str",
+        "useparts": true,
         "accumulate": true,
         "timeout": "",
         "count": "",
@@ -493,6 +515,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
+        "property": "payload",
         "x": 410,
         "y": 240,
         "wires": [
@@ -514,13 +537,6 @@
                 "pt": "msg",
                 "to": "payload",
                 "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "url",
-                "pt": "msg",
-                "to": "config.url1",
-                "tot": "msg"
             }
         ],
         "action": "",
@@ -532,7 +548,7 @@
         "y": 240,
         "wires": [
             [
-                "023783676931fe66"
+                "cf82018dfcfca6e9"
             ]
         ]
     },
@@ -553,7 +569,7 @@
         "authType": "",
         "senderr": true,
         "headers": [],
-        "x": 820,
+        "x": 1090,
         "y": 240,
         "wires": [
             [
@@ -582,6 +598,18 @@
                 "pt": "msg",
                 "to": "config.cookies",
                 "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -593,7 +621,8 @@
         "y": 780,
         "wires": [
             [
-                "7fe5ff57573b3e04"
+                "7fe5ff57573b3e04",
+                "6669b1c8bc3d5dcf"
             ]
         ]
     },
@@ -636,7 +665,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "after login attempt",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -644,7 +673,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1080,
+        "x": 1330,
         "y": 240,
         "wires": []
     },
@@ -711,7 +740,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "after systeminfo",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -775,6 +804,13 @@
                 "pt": "msg",
                 "to": "responseCookies",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1175,7 +1211,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4190,
+        "x": 4400,
         "y": 520,
         "wires": []
     },
@@ -1199,6 +1235,13 @@
                 "pt": "msg",
                 "to": "config.cookies",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1242,7 +1285,7 @@
         "y": 520,
         "wires": [
             [
-                "4e02d338d79c4c58"
+                "c9ca73bc47f598d7"
             ]
         ]
     },
@@ -1270,7 +1313,7 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 4230,
+        "x": 4270,
         "y": 1100,
         "wires": [
             [
@@ -1291,11 +1334,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 4430,
+        "x": 4460,
         "y": 1100,
         "wires": [
             [
-                "eb19a0d50d55d21e"
+                "a9c362ef6860df03"
             ]
         ]
     },
@@ -1311,7 +1354,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 4570,
+        "x": 4830,
         "y": 1100,
         "wires": [
             [
@@ -1346,6 +1389,13 @@
                 "pt": "msg",
                 "to": "config[msg.parts.index]",
                 "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1389,7 +1439,7 @@
         "y": 800,
         "wires": [
             [
-                "32b1f04edd812fca"
+                "8c1a8cdfa8e83d98"
             ]
         ]
     },
@@ -1627,7 +1677,7 @@
         "correl": "",
         "expiry": "",
         "broker": "fa21f05ffa89a9b3",
-        "x": 5330,
+        "x": 5310,
         "y": 1220,
         "wires": []
     },
@@ -1644,6 +1694,13 @@
                 "pt": "msg",
                 "to": "config.url2",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1651,7 +1708,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 4050,
+        "x": 4060,
         "y": 1100,
         "wires": [
             [
@@ -1665,7 +1722,7 @@
         "z": "3c271f19ec74d126",
         "g": "f9550fa8be23ab21",
         "name": "updated payload",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1788,7 +1845,7 @@
         "z": "3c271f19ec74d126",
         "g": "b1e48b9e9dfab9e4",
         "name": "server state",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1813,7 +1870,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3030,
+        "x": 3050,
         "y": 160,
         "wires": [
             [
@@ -1850,6 +1907,27 @@
                 "pt": "msg",
                 "to": "",
                 "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "cookies",
+                "pt": "msg",
+                "to": "config.cookies",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -1893,7 +1971,7 @@
         "y": 160,
         "wires": [
             [
-                "9bb45e2a19534359"
+                "a9bdaa8093b35072"
             ]
         ]
     },
@@ -1931,6 +2009,18 @@
                 "pt": "msg",
                 "to": "120000",
                 "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -2000,8 +2090,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3270,
-        "y": 220,
+        "x": 3280,
+        "y": 240,
         "wires": [
             []
         ]
@@ -2057,7 +2147,7 @@
         "y": 1100,
         "wires": [
             [
-                "9ce215d6e6943940"
+                "99deff523224ad54"
             ],
             [
                 "6718913a407edb6c"
@@ -2164,7 +2254,7 @@
         "to": "",
         "reg": false,
         "x": 1820,
-        "y": 740,
+        "y": 760,
         "wires": [
             [
                 "a9bdc792493e8941",
@@ -2749,7 +2839,7 @@
         "z": "3c271f19ec74d126",
         "g": "f9550fa8be23ab21",
         "name": "stopped flow",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2757,7 +2847,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3190,
+        "x": 3200,
         "y": 1140,
         "wires": []
     },
@@ -2818,7 +2908,7 @@
         "z": "3c271f19ec74d126",
         "g": "f9550fa8be23ab21",
         "name": "10sec update",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2915,6 +3005,13 @@
                 "pt": "flow",
                 "to": "true",
                 "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -2922,7 +3019,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3660,
+        "x": 3540,
         "y": 1060,
         "wires": [
             [
@@ -2954,12 +3051,12 @@
                 "valueValue": "cookies[\"xsrf-token\"][\"value\"]"
             }
         ],
-        "x": 3860,
+        "x": 3680,
         "y": 940,
         "wires": [
             [
                 "cc39b98c31d12b32",
-                "6b3175875abc97c8"
+                "35f52fdd1b7d6217"
             ]
         ]
     },
@@ -3100,7 +3197,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 1,
-        "x": 1250,
+        "x": 1290,
         "y": 120,
         "wires": [
             []
@@ -3318,7 +3415,8 @@
         "y": 300,
         "wires": [
             [
-                "b732ea8fca8317d9"
+                "b732ea8fca8317d9",
+                "37498c3b05e26bdc"
             ]
         ]
     },
@@ -3328,7 +3426,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "salt & nonce",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3436,8 +3534,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 870,
-        "y": 340,
+        "x": 950,
+        "y": 320,
         "wires": [
             [
                 "9161a8eefe170aa8"
@@ -3557,7 +3655,7 @@
         "z": "3c271f19ec74d126",
         "g": "162e31852cce599c",
         "name": "unparsed system info",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3607,8 +3705,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 540,
-        "y": 560,
+        "x": 340,
+        "y": 780,
         "wires": [
             [
                 "6f21c052f12d9d28"
@@ -3665,11 +3763,374 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1370,
+        "x": 1380,
         "y": 460,
         "wires": [
             [
                 "9161a8eefe170aa8"
+            ]
+        ]
+    },
+    {
+        "id": "cf82018dfcfca6e9",
+        "type": "switch",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "property": "config.mode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "legacy",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "4ffc09b784acbab8"
+            ],
+            [
+                "ca6325d212165253"
+            ]
+        ]
+    },
+    {
+        "id": "ca6325d212165253",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "config.url_login",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.Password",
+                "pt": "msg",
+                "to": "config.password",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.RememberMe",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 500,
+        "wires": [
+            [
+                "f83b22f03d86b502"
+            ]
+        ]
+    },
+    {
+        "id": "f83b22f03d86b502",
+        "type": "http request",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1110,
+        "y": 500,
+        "wires": [
+            [
+                "14fbacecaebf6f51"
+            ]
+        ]
+    },
+    {
+        "id": "4ffc09b784acbab8",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "config.url1",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "023783676931fe66"
+            ]
+        ]
+    },
+    {
+        "id": "6669b1c8bc3d5dcf",
+        "type": "debug",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "12828d5b06f6d6a9",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.bearer",
+                "pt": "msg",
+                "to": "payload.AccessToken",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1460,
+        "y": 500,
+        "wires": [
+            [
+                "bfcaa89a6119039a"
+            ]
+        ]
+    },
+    {
+        "id": "14fbacecaebf6f51",
+        "type": "json",
+        "z": "3c271f19ec74d126",
+        "g": "162e31852cce599c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1270,
+        "y": 500,
+        "wires": [
+            [
+                "12828d5b06f6d6a9"
+            ]
+        ]
+    },
+    {
+        "id": "99deff523224ad54",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "f9550fa8be23ab21",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "\"Bearer \"&msg.config.bearer",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3330,
+        "y": 940,
+        "wires": [
+            [
+                "9ce215d6e6943940"
+            ]
+        ]
+    },
+    {
+        "id": "a9bdaa8093b35072",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "b1e48b9e9dfab9e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3740,
+        "y": 160,
+        "wires": [
+            [
+                "9bb45e2a19534359"
+            ]
+        ]
+    },
+    {
+        "id": "c9ca73bc47f598d7",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "3cbec6f36cae1435",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 4160,
+        "y": 520,
+        "wires": [
+            [
+                "4e02d338d79c4c58"
+            ]
+        ]
+    },
+    {
+        "id": "35f52fdd1b7d6217",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "f9550fa8be23ab21",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3940,
+        "y": 980,
+        "wires": [
+            [
+                "6b3175875abc97c8"
+            ]
+        ]
+    },
+    {
+        "id": "8c1a8cdfa8e83d98",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "f9550fa8be23ab21",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3740,
+        "y": 800,
+        "wires": [
+            [
+                "32b1f04edd812fca"
+            ]
+        ]
+    },
+    {
+        "id": "a9c362ef6860df03",
+        "type": "change",
+        "z": "3c271f19ec74d126",
+        "g": "f9550fa8be23ab21",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.cookies",
+                "pt": "msg",
+                "to": "responseCookies",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 4660,
+        "y": 1100,
+        "wires": [
+            [
+                "eb19a0d50d55d21e"
             ]
         ]
     }
