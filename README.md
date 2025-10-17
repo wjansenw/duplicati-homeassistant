@@ -1,5 +1,8 @@
 duplicati-nodered-homeassistant
 ===============================
+### NOT MAINTAINED ANYMORE
+Please use https://github.com/txxa/hass-duplicati/
+
 ### Configuration
 Expose duplicati to homeassistant via nodered/mqtt.
 You need to have a working mqtt broker, homeassistant configured correctly to work with this broker and accept discovery of new devices.
